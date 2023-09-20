@@ -58,13 +58,12 @@ def generate_stats_coco_like(D:BaseDataset) -> dict:
     stats["super_categories"] = list(set(super_categories))
 
     #super categories count
-    stats["super_categories_count"] = len(super_categories)
+    stats["super_categories_count"] = len(list(set(super_categories)))
 
     # is_supercategory 
-    stats["is_supercategory"] = len(super_categories) > 0
+    stats["_is_super_category"] = len(super_categories) > 0
 
     # per category stats
-    per_category_stats = defaultdict()
     catToImgs = defaultdict(list)
     if 'annotations' in D.dataset and 'categories' in D.dataset:
         for ann in D.dataset['annotations']:
@@ -83,5 +82,6 @@ def generate_stats_coco_like(D:BaseDataset) -> dict:
                         "median": np.median(bbox_areas)
     }
 
-    return stats
+    stats["_is_masks"] = "segmentation" in D.dataset["annotations"][0]
 
+    return stats
