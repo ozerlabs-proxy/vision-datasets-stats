@@ -23,7 +23,6 @@ class BaseDataset:
     TAGS = [
     'dataset_name',
     'dataset_size',
-    'dataset_classes',
     'description',
     'created_by',
     'task',# classification, detection, segmentation, tracking etc.
@@ -32,11 +31,10 @@ class BaseDataset:
     "annotations_count", ##of annotations(objects)
     "categories_count", ##of categories in the dataset
     "categories", # list of all categories in the dataset
-    "is_super_categories", # True if the dataset contains super categories annotations
     "super_categories", # list of all super categories in the dataset
-    "category_ids" # list of all category ids in the dataset
-    "is_bboxes",# True if the dataset contains bounding boxes annotations
-    "is_masks",# True if the dataset contains masks annotations
+    "_is_bboxes",# True if the dataset contains bounding boxes annotations
+    "_is_masks",# True if the dataset contains masks annotations
+    "_is_super_categories",# True if the dataset contains super categories annotations
 
         ]
     
