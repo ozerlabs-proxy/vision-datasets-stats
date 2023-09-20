@@ -25,4 +25,4 @@ visdrone_coco_format = conversion_tools.convert_visdrone_to_coco(visdrone_path=v
 # save the json file
 utilities.save_json(data=visdrone_coco_format, 
                         save_dir=str(visdrone_path/converted_annotations_dir),
-                        file_name="visdrone_coco_format.json")
+                        file_name="visdrone_converted_to_coco_format.json")

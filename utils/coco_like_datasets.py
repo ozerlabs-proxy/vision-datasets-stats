@@ -46,7 +46,7 @@ def generate_stats_coco_like(D:BaseDataset) -> dict:
     stats["categories_count"] = len(list(set([cat["id"] for cat in D.dataset["categories"]])))
 
     #categories ids
-    categories = {cat["id"]: cat["name"] for cat in D.dataset["categories"]}
+    categories=({int(cat["id"]): cat["name"] for cat in D.dataset["categories"]})
     stats["categories"] =categories
 
     #super categories count
@@ -67,9 +67,14 @@ def generate_stats_coco_like(D:BaseDataset) -> dict:
     catToImgs = defaultdict(list)
     if 'annotations' in D.dataset and 'categories' in D.dataset:
         for ann in D.dataset['annotations']:
-            catToImgs[ann['category_id']].append(ann['image_id'])
+            catToImgs[int(ann['category_id'])].append(int(ann['image_id']))
+    stats["per_category_stats"]= {}
+    for k,v in catToImgs.items():
+        if k in categories:
+            stats["per_category_stats"].update({categories[k]:len(v)})
+        else:
+            stats["per_category_stats"].update({k:len(v)})
 
-    stats["per_category_stats"] ={categories[k]:len(v)  for k,v in catToImgs.items()}
 
     stats["_is_bboxes"] = "bbox" in D.dataset["annotations"][0]
 

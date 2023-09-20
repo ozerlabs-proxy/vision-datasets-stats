@@ -28,5 +28,5 @@ def save_json(data,
                 print("[ERROR] error saving json file...")
                 print(e)
                 return
-        print("[INFO] done...")
+        print(f"[INFO] file saved at {save_dir}.")
                 

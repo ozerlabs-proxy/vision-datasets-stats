@@ -33,7 +33,6 @@ class VisDrone(BaseDataset):
     def __init__(self, annotation_file=None):
         """
         same as skydata and coco
-
         """
         super().__init__(extra_tags=['task'])
 
@@ -53,10 +52,10 @@ class VisDrone(BaseDataset):
         """
             This function generates the dataset statistics. including: counts.
             The statistics are saved in a dictionary with keys as the tags and values as the statistics.
-        """
+        """                                                                                             
         print(f"[INFO] Generating dataset statistics for the {self.__class__.__name__}...")
         
-        self.dataset_statistics['dataset_name'] = 'VisDrone'
+        self.dataset_statistics['dataset_name'] = "VisDrone"                                                                                                                                                                                                                   
         self.dataset_statistics['dataset_size'] = len(self.dataset['images'])
         self.dataset_statistics['description'] = 'VisDrone dataset'
         self.dataset_statistics['created_by'] = 'VisDrone'

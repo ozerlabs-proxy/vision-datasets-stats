@@ -15,7 +15,7 @@ import numpy as np
 from typing import Dict, List, Tuple, Union
 from collections import defaultdict
 from pathlib import Path
-
+from utils import utilities
 
 
 class BaseDataset:
@@ -86,7 +86,7 @@ class BaseDataset:
         try:
             with open(file_path, 'w') as f:
                 print(f'[INFO] saving ...: {file_name}')
-                json.dump(self.dataset_statistics, f)
+                json.dump(self.dataset_statistics, f,default=utilities.np_encoder)
         except Exception as e:
             print(f'[ERROR] saving dataset statistics...: {e}')
 
