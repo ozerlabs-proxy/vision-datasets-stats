@@ -29,11 +29,10 @@ For each dataset;
 1. `COCO`
     Introduced by Tsung-Yi Lin et al. in Microsoft COCO: Common Objects in Context
 
+2. `SkyData` 
+    Our dataset: SkyData: UAV taken images dataset for object detection and tracking.
 
-2. `ImageNet`
-    Introduced by Jia Deng et al. in ImageNet: A large-scale hierarchical image database
-
-
+3. 
 
 
 
@@ -52,7 +51,6 @@ For each dataset;
 # Detection Datasets
 - VisDrone DET
 - VHR-10
-- SkyData
 - DOTA
 - KAIST
 

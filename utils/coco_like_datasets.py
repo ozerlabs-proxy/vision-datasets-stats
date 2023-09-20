@@ -61,7 +61,7 @@ def generate_stats_coco_like(D:BaseDataset) -> dict:
     stats["super_categories_count"] = len(list(set(super_categories)))
 
     # is_supercategory 
-    stats["_is_super_category"] = len(super_categories) > 0
+    stats["_is_super_categories"] = len(super_categories) > 0
 
     # per category stats
     catToImgs = defaultdict(list)
