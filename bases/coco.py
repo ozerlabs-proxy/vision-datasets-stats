@@ -52,7 +52,7 @@ from matplotlib.patches import Polygon
 import numpy as np
 import copy
 import itertools
-from . import mask as maskUtils
+# from . import mask as maskUtils
 import os
 from collections import defaultdict
 import sys
@@ -63,7 +63,8 @@ elif PYTHON_VERSION == 3:
     from urllib.request import urlretrieve
 
 # has methods to be implemented
-from BaseDatasetFunctionality import BaseDataset
+from .base_dataset_functionality import BaseDataset
+from   utils import coco_like_datasets  
 
 
 def _isArrayLike(obj):
@@ -78,7 +79,7 @@ class COCO(BaseDataset):
         :param image_folder (str): location to the folder that hosts images.
         :return:
         """
-        super(self, Tags=[]).__init__()
+        super().__init__(extra_tags=['task'])
 
         # load dataset
         self.dataset,self.anns,self.cats,self.imgs = dict(),dict(),dict(),dict()
@@ -92,6 +93,23 @@ class COCO(BaseDataset):
             self.dataset = dataset
             self.createIndex()
 
+    def generate_dataset_statistics(self):
+        """
+            This function generates the dataset statistics. including: counts.
+            The statistics are saved in a dictionary with keys as the tags and values as the statistics.
+        """
+        print(f"[INFO] Generating dataset statistics for the {self.__class__.__name__}...")
+        
+        self.dataset_statistics['dataset_name'] = 'COCO'
+        self.dataset_statistics['dataset_size'] = len(self.dataset['images'])
+        self.dataset_statistics['description'] = 'COCO dataset'
+        self.dataset_statistics['created_by'] = 'Microsoft'
+        self.dataset_statistics['task'] = 'detection'
+        self.dataset_statistics['info'] = self.dataset['info']
+        other_stats = coco_like_datasets.generate_stats_coco_like(self)
+        self.dataset_statistics.update(other_stats)
+
+        print(f"[INFO] Dataset statistics generated for the {self.__class__.__name__}.")
     
 
     def createIndex(self):

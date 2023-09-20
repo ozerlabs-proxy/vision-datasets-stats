@@ -2,3 +2,13 @@
 __pycache__
 
 # 
+*.pyc
+
+
+# ignore files
+
+*.json
+
+
+#ignore check point files
+.ipynb_checkpoints

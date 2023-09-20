@@ -4,7 +4,7 @@ There are two main functions that are used to generate the statistics:
     - generate_dataset_statistics
     - save_dataset_statistics
 
-the functions will be implemented in the child classes of BaseDatasetFunctionality
+the functions will be implemented in the child classes of BaseDataset.
 """
 
 
@@ -26,6 +26,18 @@ class BaseDataset:
     'dataset_classes',
     'description',
     'created_by',
+    'task',# classification, detection, segmentation, tracking etc.
+    "info", # info about the dataset
+    "images_count", # # of images in the dataset
+    "annotations_count", ##of annotations(objects)
+    "categories_count", ##of categories in the dataset
+    "categories", # list of all categories in the dataset
+    "is_super_categories", # True if the dataset contains super categories annotations
+    "super_categories", # list of all super categories in the dataset
+    "category_ids" # list of all category ids in the dataset
+    "is_bboxes",# True if the dataset contains bounding boxes annotations
+    "is_masks",# True if the dataset contains masks annotations
+
         ]
     
     def __init__(self, 
@@ -79,6 +91,8 @@ class BaseDataset:
                 json.dump(self.dataset_statistics, f)
         except Exception as e:
             print(f'[ERROR] saving dataset statistics...: {e}')
+
+        print(f'[INFO] dataset statistics saved to: {file_path}')
 
         
 
