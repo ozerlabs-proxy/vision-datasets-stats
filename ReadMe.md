@@ -32,7 +32,7 @@ For each dataset;
 2. `SkyData` 
     Our dataset: SkyData: UAV taken images dataset for object detection and tracking.
 
-3. 
+3. `VisDrone` Vision Meets Drones: collected by the AISKYEYE team at Lab of Machine Learning and Data Mining, Tianjin University, China. The dataset consists of `288 video` clips formed by `261,908 frames` and `10,209 static` images, captured by various drone-mounted cameras.
 
 
 
