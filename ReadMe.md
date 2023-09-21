@@ -32,7 +32,7 @@ For each dataset;
 2. `SkyData` 
     Our dataset: SkyData: UAV taken images dataset for object detection and tracking.
 
-3. `VisDrone` Vision Meets Drones: collected by the AISKYEYE team at Lab of Machine Learning and Data Mining, Tianjin University, China. The dataset consists of `288 video` clips formed by `261,908 frames` and `10,209 static` images, captured by various drone-mounted cameras.
+3. `VisDrone DET` Vision Meets Drones: collected by the AISKYEYE team at Lab of Machine Learning and Data Mining, Tianjin University, China. The dataset consists of `288 video` clips formed by `261,908 frames` and `10,209 static` images, captured by various drone-mounted cameras.
 
 
 
@@ -40,56 +40,47 @@ For each dataset;
 
 
 
-## tasks to be carried out
+## Detection datasets 
 
-- VEDAI dataset
-- KAIST Dataset
-- SkyData dataset
+* [x] 1. COCO
+* [x] 2. SkyData
+* [x] 3. VisDrone DET
+* [ ] 4. KAIST
+* [ ] 5. UAV123
+* [ ] 6. KITTI
+* [ ] 7. MOTS
+* [ ] 8. VHR-10
+* [ ] 9. DOTA
+* [ ] 10. VEDAI dataset
 
+## Segmentation datasets
+### Semantic Segmentation Datasets
+* [ ] 1. COCO
+* [ ] 2. SkyData
+* [ ] 3. KITTI
+* [ ] 4. VHR-10
 
+### Instance Segmentation
+* [ ] 1. COCO
+* [ ] 2. SkyData
 
-# Detection Datasets
-- VisDrone DET
-- VHR-10
-- DOTA
-- KAIST
+## Tracking Datasets
+### Single Object Tracking Datasets
+* [ ] 1. SkyData
+* [ ] 2. VisDrone-SOT
+* [ ] 3. ----------------
 
-    # Detection Datasets
-            - VisDrone DET
-            - VHR-10
-            - SkyData
-            - DOTA
-            - KAIST
-            - UAV123 
-            - COCO
-            - KITTI
-            - MOTS 
+### Multiobject Tracking Datasets [MOT]
 
-    Youtube Datasets (video instance segmentation)
+* [ ] 1. VisDrone-MOT 
+* [ ] 2. MOTS
+* [ ] 3. SkyData
+* [ ] 4. KAIST
 
-# Segmentation Datasets
+## Video Instance Segmentation Datasets
+* [ ] 1. Youtube-VIS
+* [ ] 2. SkyData
 
-Semantic Segmentation Datasets
-- COCO 
-- VHR-10
-- SkyData
-- KITTI
-
-Instance Segmentation
-
-- 
-- 
- 
-# Multiobject Tracking Datasets
-
-- VisDrone Track
-- KAIST
-- MOT dataset 
-- SkyData
-
-# Video Instance Segmentation Datasets
-- Youtube datasets
-- SkyData
 
 
 # Note to self 

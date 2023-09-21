@@ -96,7 +96,7 @@ def parse_annotations(image_id: int,
                    'occlusion']
         df = pd.read_csv(file_path, sep=',', header=None)
 
-        if df.shape[1] == 8:
+        if df.shape[1] == len(columns):
                 df.columns = columns
         else:
                print("[ERROR] bad columns")
@@ -152,11 +152,11 @@ def get_image_and_annotations(file_id: int ,
             and image_path.suffix =='.jpg'
             and image_path.exists() ), "File path is not valid"
     
+    # Read and parse image to image dict
     image = parse_image(image_id=file_id,
                         image_path=image_path)
 
-    # Read and parse annotations
-
+    # Read and parse annotations to annotations list of dicts
     try:
         annotations=parse_annotations(image_id=file_id,
                                     file_path=file_path)
@@ -194,8 +194,9 @@ def convert_visdrone_to_coco(info : dict = None,
     }
 
     # ##
-    ## Categories
-    class_names = ['pedestrian',
+    ## Categories from  https://github.com/VisDrone/VisDrone2018-DET-toolkit
+    class_names = ['ignored regions', # class zero
+                'pedestrian',
                 'people',
                 'bicycle',
                 'car',
@@ -207,7 +208,7 @@ def convert_visdrone_to_coco(info : dict = None,
                 'motor',
                 'others'] if not class_names else class_names
 
-    categories= [{"id": i, "name": cat} for i,cat in enumerate(class_names,1)]
+    categories= [{"id": i, "name": cat} for i,cat in enumerate(class_names,0)]
 
     # ##
     # add categories to the dictionary
