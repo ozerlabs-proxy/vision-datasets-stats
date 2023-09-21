@@ -36,6 +36,7 @@ For each dataset;
 
 4. `KAIST` a Multispectral(RGB-Thermal) Pedestrian Detection Challenge. The KAIST Multispectral Pedestrian Dataset is imaging hardware consisting of a color camera, a thermal camera and a beam splitter to capture the aligned multispectral `(RGB color + Thermal)` images. With this hardware, we captured various regular traffic scenes at day and night time to consider changes in light conditions. and, consists of 95k color-thermal pairs `(640x480, 20Hz)` taken from a `vehicle`. All the pairs are manually annotated (`person`, `people`, `cyclist`) for the total of `103,128` dense annotations and `1,182` unique pedestrians.  [read more](https://eval.ai/web/challenges/challenge-page/1247/evaluation)
 
+6. `VHR-10` Very High Resolution Vehicle Detection in Aerial Imagery. The VHR-10 is a  10-class geospatial object detection dataset. These ten classes of objects are `airplane`, `ship`, `storage tank`, `baseballdiamond`, `tennis court`, `basketball court`, `ground track field`, `harbor`, `bridge`, and `vehicle`. This dataset contains totally `800 very-high-resolution (VHR)` remote sensing images that were cropped from `Google Earth` and `Vaihingen dataset` and then `manually annotated` by experts. [read more](https://gcheng-nwpu.github.io/)
 
 
 
@@ -48,10 +49,10 @@ For each dataset;
 * [x] 2. SkyData
 * [x] 3. VisDrone DET
 * [x] 4. ~~KAIST (not sure it is original)~~
-* [x] 5. 4 KAIST (larger version)
+* [x] 5. KAIST (larger version)
+* [ ] 6. VHR-10 
 * [ ] 6. KITTI
 * [ ] 7. MOTS
-* [ ] 8. VHR-10
 * [ ] 9. DOTA
 * [ ] 10. VEDAI dataset
 
