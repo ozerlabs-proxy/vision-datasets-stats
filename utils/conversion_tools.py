@@ -189,26 +189,25 @@ def convert_visdrone_to_coco(info : dict = None,
         "licenses": [],
         "images": [],
         "annotations": [],
-        "categories": [            
-        ]
+        "categories": []
     }
 
     # ##
     ## Categories from  https://github.com/VisDrone/VisDrone2018-DET-toolkit
-    class_names = ['ignored regions', # class zero
-                'pedestrian',
-                'people',
-                'bicycle',
-                'car',
-                'van',
-                'truck',
-                'tricycle',
-                'awning-tricycle',
-                'bus',
-                'motor',
-                'others'] if not class_names else class_names
+    class_names = ['ignored regions', 
+                        'pedestrian',
+                        'people',
+                        'bicycle',
+                        'car',
+                        'van',
+                        'truck',
+                        'tricycle',
+                        'awning-tricycle',
+                        'bus',
+                        'motor',
+                        'others'] if not class_names else class_names
 
-    categories= [{"id": i, "name": cat} for i,cat in enumerate(class_names,0)]
+    categories= [{"id": i, "name": cat} for i,cat in enumerate(class_names)]
 
     # ##
     # add categories to the dictionary

@@ -70,7 +70,7 @@ def generate_stats_coco_like(D:BaseDataset) -> dict:
             catToImgs[int(ann['category_id'])].append(int(ann['image_id']))
     stats["per_category_stats"]= {}
     for k,v in catToImgs.items():
-        if k in categories:
+        if int(k) in categories:
             stats["per_category_stats"].update({categories[k]:len(v)})
         else:
             stats["per_category_stats"].update({k:len(v)})
