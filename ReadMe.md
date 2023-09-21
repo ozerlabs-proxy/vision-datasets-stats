@@ -50,7 +50,7 @@ For each dataset;
 * [x] 3. VisDrone DET
 * [x] 4. ~~KAIST (not sure it is original)~~
 * [x] 5. KAIST (larger version)
-* [ ] 6. VHR-10 
+* [x] 6. VHR-10 
 * [ ] 6. KITTI
 * [ ] 7. MOTS
 * [ ] 9. DOTA
