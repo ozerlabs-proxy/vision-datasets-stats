@@ -34,6 +34,8 @@ For each dataset;
 
 3. `VisDrone DET` Vision Meets Drones: collected by the AISKYEYE team at Lab of Machine Learning and Data Mining, Tianjin University, China. The dataset consists of `288 video` clips formed by `261,908 frames` and `10,209 static` images, captured by various drone-mounted cameras.
 
+4. `KAIST` a Multispectral(RGB-Thermal) Pedestrian Detection Challenge. The KAIST Multispectral Pedestrian Dataset is imaging hardware consisting of a color camera, a thermal camera and a beam splitter to capture the aligned multispectral `(RGB color + Thermal)` images. With this hardware, we captured various regular traffic scenes at day and night time to consider changes in light conditions. and, consists of 95k color-thermal pairs `(640x480, 20Hz)` taken from a `vehicle`. All the pairs are manually annotated (`person`, `people`, `cyclist`) for the total of `103,128` dense annotations and `1,182` unique pedestrians.  [more...] (https://eval.ai/web/challenges/challenge-page/1247/evaluation)
+
 
 
 
@@ -45,7 +47,8 @@ For each dataset;
 * [x] 1. COCO
 * [x] 2. SkyData
 * [x] 3. VisDrone DET
-* [ ] 4. KAIST
+* [x] 4. KAIST (not sure it is original)
+* [x] 4. KAIST (larger version)
 * [ ] 5. UAV123
 * [ ] 6. KITTI
 * [ ] 7. MOTS

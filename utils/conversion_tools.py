@@ -104,8 +104,6 @@ def parse_annotations(image_id: int,
                print(df.shape)
                raise ValueError("badcolumns")
         
-
-
         
         for _, row in df.iterrows():
                 ann ={}

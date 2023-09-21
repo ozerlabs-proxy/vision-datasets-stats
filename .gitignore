@@ -3,8 +3,12 @@ __pycache__
 
 # 
 *.pyc
+# ignore dirs
 
-
+data
+data/*
+data/kaist_pedestrian
+data/kaist_roboflow
 # ignore files
 
 *.json
@@ -12,4 +16,5 @@ playground.ipynb
 
 #ignore check point files
 .ipynb_checkpoints
+
 
