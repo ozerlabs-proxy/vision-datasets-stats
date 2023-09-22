@@ -43,6 +43,7 @@ import numpy as np
 import json
 import os 
 from pathlib import Path
+from tqdm.auto import tqdm
 
 import pdb
 
@@ -207,7 +208,7 @@ def convert_kaist_to_coco(vbb_inputdir):
     }
 
     
-    for sub_dir in sub_dirs:
+    for sub_dir in tqdm(sub_dirs):
         print( "Parsing annotations (vbb): {}".format(sub_dir) )        
         vbb_files = glob.glob(os.path.join(vbb_inputdir, sub_dir, "*.vbb"))
         

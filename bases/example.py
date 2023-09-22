@@ -3,6 +3,7 @@ Dataset toy example to test functionality of the framework.
 """
 
 from .base_dataset_functionality import BaseDataset
+from  utils.utilities import _isArrayLike
 
 class Example(BaseDataset):
     

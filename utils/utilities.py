@@ -2,6 +2,10 @@ import json
 import numpy as np
 from pathlib import Path
 
+# check if object is iterable
+def _isArrayLike(obj):
+    return hasattr(obj, '__iter__') and hasattr(obj, '__len__')
+
 
 # dumping json needs to convert numpy types to python types
 def np_encoder(object):

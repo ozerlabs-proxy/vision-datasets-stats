@@ -39,6 +39,16 @@ For each dataset;
 6. `VHR-10` Very High Resolution Vehicle Detection in Aerial Imagery. The VHR-10 is a  10-class geospatial object detection dataset. These ten classes of objects are `airplane`, `ship`, `storage tank`, `baseballdiamond`, `tennis court`, `basketball court`, `ground track field`, `harbor`, `bridge`, and `vehicle`. This dataset contains totally `800 very-high-resolution (VHR)` remote sensing images that were cropped from `Google Earth` and `Vaihingen dataset` and then `manually annotated` by experts. [read more](https://gcheng-nwpu.github.io/)
 
 
+7. `DOTA` [A Large-Scale Benchmark and Challenges for Object Detection in Aerial Images](https://captain-whu.github.io/DOTA/index.html). `DOTA` is a large-scale dataset for object detection in aerial images. The DOTA images are collected from the Google Earth, GF-2 and JL-1 satellite provided by the China Centre for Resources Satellite Data and Application, and aerial images provided by CycloMedia B.V. DOTA consists of RGB images and grayscale images. The RGB images are from Google Earth and CycloMedia, while the grayscale images are from the panchromatic band of GF-2 and JL-1 satellite images. All the images are stored in 'png' formats.
+
+    It can be used to develop and evaluate object detectors in aerial images. The images are collected from different sensors and platforms. Each image is of the size in the range from `800 × 800` to `20,000 × 20,000 pixels` and contains objects exhibiting a wide variety of scales, orientations, and shapes. The instances in DOTA images are `annotated by experts in aerial image` interpretation by arbitrary (8 d.o.f.) quadrilateral. Currently DOTA has 3 versions: 
+
+    - `DOTA-v1.0` contains 15 common categories, `2,806 images` and 1`88, 282 instances.`
+    - `DOTA-v1.5`  same images as `DOTA-v1.0`, but the extremely small instances (less than 10 pixels) are also annotated. Moreover, a new category, ”container crane” is added. 
+    - `DOTA-v2.0` latest and contains more categories, images and instances. collects more Google Earth, GF-2 Satellite, and aerial images. There are 18 common categories, `11,268 images` and `1,793,658 instances` in `DOTA-v2.0.` Compared to `DOTA-v1.5`, it further adds the new categories of ”airport” and ”helipad”.
+
+We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.github.io/DOTA/index.html)
+
 
 
 
@@ -51,9 +61,9 @@ For each dataset;
 * [x] 4. ~~KAIST (not sure it is original)~~
 * [x] 5. KAIST (larger version)
 * [x] 6. VHR-10 
-* [ ] 6. KITTI
-* [ ] 7. MOTS
-* [ ] 9. DOTA
+* [x] 7. DOTA
+* [ ] . KITTI
+* [ ] . MOTS
 * [ ] 10. VEDAI dataset
 
 ## Segmentation datasets

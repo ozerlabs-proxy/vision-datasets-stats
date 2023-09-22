@@ -9,7 +9,7 @@ python scripts/convert_visdrone_to_coco_format.py
 '''
 
 from pathlib import Path
-from utils import conversion_tools
+from utils import conversion_visdrone_tools
 from utils import utilities
 
 
@@ -20,7 +20,7 @@ converted_annotations_dir = "converted_annotations"
 
 #convert visdrone to coco format
 # print("[INFO] Converting dataset to coco format...")
-visdrone_coco_format = conversion_tools.convert_visdrone_to_coco(visdrone_path=visdrone_path,
+visdrone_coco_format = conversion_visdrone_tools.convert_visdrone_to_coco(visdrone_path=visdrone_path,
                             annotations_dir = annotations_dir)
 # print("[INFO] done. ")
 # save the json file

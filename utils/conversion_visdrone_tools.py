@@ -54,6 +54,7 @@ import json
 from pathlib import Path
 from PIL import Image
 import pandas as pd
+from tqdm.auto import tqdm
 
 
 def parse_image(image_id: int,
@@ -220,7 +221,7 @@ def convert_visdrone_to_coco(info : dict = None,
     all_annotation_files = list(annotations_path.glob("*.txt"))
 
     # we will iterate for each file and extract annotations
-    for file_id, file_path in enumerate(all_annotation_files,1):
+    for file_id, file_path in enumerate(tqdm(all_annotation_files),1):
         try:
             image, annotations = get_image_and_annotations(file_id=file_id,                                                   
                                                     file_path=file_path)

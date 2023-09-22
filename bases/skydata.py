@@ -23,11 +23,7 @@ elif PYTHON_VERSION == 3:
 # has methods to be implemented
 from .base_dataset_functionality import BaseDataset
 from   utils import coco_like_datasets  
-
-
-def _isArrayLike(obj):
-    return hasattr(obj, '__iter__') and hasattr(obj, '__len__')
-
+from  utils.utilities import _isArrayLike
 
 class VisDrone(BaseDataset):
     def __init__(self, annotation_file=None):

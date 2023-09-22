@@ -3,6 +3,7 @@ import sys
 import os
 sys.path.append(os.getcwd())
 
+
 '''
 script is ment to be run from the root directory of the project
 python ./scripts/convert_kaist_to_coco_format.py
@@ -10,7 +11,6 @@ python ./scripts/convert_kaist_to_coco_format.py
 
 from pathlib import Path
 from utils import conversion_kaist_tools
-from utils import utilities
 from utils import utilities
 
 
