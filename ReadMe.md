@@ -51,6 +51,8 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
 
 8. `VEDAI` (Vehicle Detection in Aerial Imagery) : a dataset for Vehicle Detection in Aerial Imagery, provided as a tool to benchmark automatic target recognition algorithms in unconstrained environments. The vehicles contained in the database, in addition of being small, exhibit different variabilities such as multiple orientations, lighting/shadowing changes, specularities or occlusions. Furthermore, each image is available in several spectral bands and resolutions. [read more](https://downloads.greyc.fr/vedai/)
 
+9. `KITTI` (Karlsruhe Institute of Technology and Toyota Technological Institute) : a large-scale dataset for object detection, object tracking, and more. The dataset consists of `grayscale` and `color` images, as well as `velodyne` point clouds and `calibration` data. This raw data is annotated with object bounding boxes and instance segmentations. [read more](http://www.cvlibs.net/datasets/kitti/)
+
 
 
 
@@ -64,9 +66,10 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
 * [x] 5. KAIST (larger version)
 * [x] 6. VHR-10 
 * [x] 7. DOTA
-* [ ] 8. VEDAI dataset
-* [ ] . MOTS
-* [ ] 10. KITTI
+* [x] 8. VEDAI dataset ` need inspection`
+* [ ] 9. KITTI
+* [ ] 10. MOTS
+
 
 ## Segmentation datasets
 ### Semantic Segmentation Datasets

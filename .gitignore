@@ -4,7 +4,7 @@ __pycache__
 # 
 *.pyc
 # ignore dirs
-
+lab-server
 data
 data/*
 data/kaist_pedestrian
