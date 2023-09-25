@@ -9,6 +9,7 @@ data
 data/*
 data/kaist_pedestrian
 data/kaist_roboflow
+summaries
 # ignore files
 
 *.json
