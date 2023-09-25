@@ -67,7 +67,7 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
 * [x] 6. VHR-10 
 * [x] 7. DOTA
 * [x] 8. VEDAI dataset ` need inspection`
-* [ ] 9. KITTI
+* [x] 9. KITTI
 * [ ] 10. MOTS
 
 
@@ -81,6 +81,8 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
 ### Instance Segmentation
 * [ ] 1. COCO
 * [ ] 2. SkyData
+
+
 
 ## Tracking Datasets
 ### Single Object Tracking Datasets
