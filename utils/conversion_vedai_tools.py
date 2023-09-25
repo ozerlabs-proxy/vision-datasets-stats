@@ -67,15 +67,15 @@ def parse_annotation(row: None) -> list[dict]:
         ann["center_x"] = row['center_x']
         ann["center_y"] = row['center_y']
         ann["orientation"] = row['orientation']
-        ann["category_id"] = row['class_id']
+        ann["category_id"] = int(row['class_id'])
         ann["iscrowd"] = 0
         ann["score"] = 1
-        ann["oclusion"] = row['is_occluded']
-        ann["truncation"] = row['is_contained']
+        ann["oclusion"] = int(row['is_occluded'])
+        ann["truncation"] = int(row['is_contained'])
 
-        ann["segmentation"] = []
+        ann["segmentation"] = [box_info['poly']]
         ann["bbox"] = [xmin, ymin, width, height]
-        # ann["area"]=height*width
+        ann["area"]= height*width #box_info['area'] # also can be computed from the bbox
 
         return ann
    
