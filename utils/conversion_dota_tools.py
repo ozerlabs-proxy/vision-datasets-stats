@@ -461,6 +461,7 @@ def convert_dota_to_coco(srcpath : str,
                                         max(obj['poly'][0::2]), max(obj['poly'][1::2])
 
             width, height = xmax - xmin, ymax - ymin
+            
             single_obj['bbox'] = xmin, ymin, width, height
             single_obj['image_id'] = image_id
             data_dict['annotations'].append(single_obj)
