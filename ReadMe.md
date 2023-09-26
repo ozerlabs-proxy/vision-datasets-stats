@@ -102,6 +102,10 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
 * [ ] 1. Youtube-VIS
 * [ ] 2. SkyData
 
+# Stats 
+
+There is a number of stats about datasets that can be generated. These may vary depending on the task, for most we will derive the following:
+
 
 
 # Note to self 
