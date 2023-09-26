@@ -68,7 +68,8 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
 * [x] 7. DOTA
 * [x] 8. VEDAI dataset ` need inspection`
 * [x] 9. KITTI
-* [ ] 10. MOTS
+* [ ] 10. UAV123
+
 
 
 ## Segmentation datasets
@@ -77,11 +78,12 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
 * [ ] 2. SkyData
 * [ ] 3. KITTI
 * [ ] 4. VHR-10
+* [ ] 5. MOTS
 
 ### Instance Segmentation
 * [ ] 1. COCO
 * [ ] 2. SkyData
-
+* [ ] 3. VHR-10
 
 
 ## Tracking Datasets
@@ -106,7 +108,12 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
 
 There is a number of stats about datasets that can be generated. These may vary depending on the task, for most we will derive the following:
 
-
+* [ ] 1. Number of images
+* [ ] 2. Number of objects
+* [ ] 3. Number of classes
+* [ ] 4. Number of instances per class
+* [ ] 5. Average number of instances per image
+* [ ] 6. Average number of instances per class
 
 # Note to self 
 
