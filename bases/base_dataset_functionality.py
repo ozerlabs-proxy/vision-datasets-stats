@@ -21,21 +21,17 @@ from utils import utilities
 class BaseDataset:
 
     TAGS = [
-    'dataset_name',
-    'dataset_size',
-    'description',
-    'created_by',
-    'task',# classification, detection, segmentation, tracking etc.
-    "info", # info about the dataset
-    "images_count", # # of images in the dataset
-    "annotations_count", ##of annotations(objects)
-    "categories_count", ##of categories in the dataset
-    "categories", # list of all categories in the dataset
-    "super_categories", # list of all super categories in the dataset
-    "_is_bboxes",# True if the dataset contains bounding boxes annotations
-    "_is_masks",# True if the dataset contains masks annotations
-    "_is_super_categories",# True if the dataset contains super categories annotations
-
+            "created_by",
+            "dataset_name",
+            "description",
+            "task",
+            "images_count",
+            "annotations_count",
+            "_images_stats",
+            "_categories_stats",
+            "_super_categories_stats",
+            "_boxes_stats",
+            "_masks_stats"
         ]
     
     def __init__(self, 

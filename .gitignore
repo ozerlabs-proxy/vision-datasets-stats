@@ -10,6 +10,7 @@ data/*
 data/kaist_pedestrian
 data/kaist_roboflow
 summaries
+backups
 # ignore files
 
 *.json
