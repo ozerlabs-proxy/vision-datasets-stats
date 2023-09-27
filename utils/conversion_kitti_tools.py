@@ -147,7 +147,7 @@ def convert_kitti_to_coco(split : str ="training",
                 'rotation_y': rotation_y,
                 'iscrowd': 0,
                 'segmentation': [],
-                'area': bbox[2] * bbox[3]
+                'area': float(bbox[2]) * float(bbox[3])
                 }
         ret['annotations'].append(ann)
      
