@@ -16,9 +16,67 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 #************** BOXES stats ******************#
+#_is_bboxes, areas_stats, ratios_stats,areas_ranges
+
+
+def summarize_global_areas_ratios_general_stats_plot_and_save(stats,
+                                                                save_path,
+                                                                file_name):
+    """
+    Accepts ratios and areas  and saves it as csv and plots it
+    """
+    # save global_areas_ranges_stats_d    
+    print(f"[INFO] General ratios and areas stats ....")
+    save_path = Path(save_path)
+    stats=pd.DataFrame(stats)
+
+    #plot possible plots for areas and ratios
+    old_stats = stats.copy()
+    stats = stats.drop(columns=[str(col) for col in stats.columns if 'max' in str(col)])
+    stats.plot(x='dataset_name',   
+                    #   y=[
+                    #      'mean_area', 
+                    #      'median_area', 
+                    #      'std_area', 
+                    #      'min_area', 
+                    #      'mean_ratio',
+                    #      ],                                       
+                    kind='bar', 
+                    figsize=(15,15),
+                    title="box ratios and areas Stats",
+                    xlabel="")
+
+    plt.xticks(rotation=90)
+    plt.savefig(str(save_path/f'{file_name}.png'), dpi=300, bbox_inches='tight')
+    plt.close()
+
+    save_df_to_csv(df=old_stats,
+                    save_path=save_path,
+                    file_name=f'{file_name}.csv')
+
+
+
+def get_formated_area_stats_per_dataset(dataset_name:str, 
+                                                boxes_stats:dict):
+    """
+    Given boxes_stats, return a dictionary containing the area stats per dataset
+    """
+    summary = {"dataset_name": dataset_name,
+               "_is_bboxes":  boxes_stats['_is_bboxes'],
+               **{f'{k}_area':round(v, 2) if type(v) is float else v for k,v in boxes_stats['areas_stats'].items()},
+               **{f'{k}':round(v, 2) if type(v) is float else v for k,v in boxes_stats['areas_ranges_stats'].items()},
+               **{f'{k}_ratio':round(v, 2) if type(v) is float else v for k,v in boxes_stats['ratios_stats'].items()},
+               }
+
+    return summary
+
 def plot_save_per_dataset_ratios_hist(_ratios,
                                       save_path,
                                       file_name='ratios_hist'):
+    
+    '''
+    Given ratios per dataset, plot and save ratios hist
+    '''
     print(f"[INFO] per dataset ratios stats ....")
     save_path = Path(save_path)
     save_path.mkdir(parents=True, exist_ok=True)
