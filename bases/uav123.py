@@ -25,10 +25,10 @@ from .base_dataset_functionality import BaseDataset
 from   utils import coco_like_datasets  
 from  utils.utilities import _isArrayLike
 
-class KAIST(BaseDataset):
+class UAV123(BaseDataset):
     def __init__(self, annotation_file=None):
         """
-        same as skydata and coco 
+        same as skydata and coco
         """
         super().__init__(extra_tags=['task'])
 
@@ -51,11 +51,11 @@ class KAIST(BaseDataset):
         """                                                                                             
         print(f"[INFO] Generating dataset statistics for the {self.__class__.__name__}...")
         
-        self.dataset_statistics['dataset_name'] = "KAIST_roboflow"                                                                                                                                                                                                                   
+        self.dataset_statistics['dataset_name'] = "UAV123"                                                                                                                                                                                                                   
         self.dataset_statistics['dataset_size'] = len(self.dataset['images'])
-        self.dataset_statistics['description'] = 'KAIST  dataset'
-        self.dataset_statistics['created_by'] = 'KAIST'
-        self.dataset_statistics['task'] = 'detection'
+        self.dataset_statistics['description'] = 'UAV123 dataset'
+        self.dataset_statistics['created_by'] = 'UAV123'
+        self.dataset_statistics['task'] = 'tracking'
         self.dataset_statistics['info'] = self.dataset['info']
         other_stats = coco_like_datasets.generate_stats_coco_like(self)
         self.dataset_statistics.update(other_stats)
@@ -93,4 +93,3 @@ class KAIST(BaseDataset):
         self.catToImgs = catToImgs
         self.imgs = imgs
         self.cats = cats
-

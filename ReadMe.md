@@ -53,7 +53,7 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
 
 9. `KITTI` (Karlsruhe Institute of Technology and Toyota Technological Institute) : a large-scale dataset for object detection, object tracking, and more. The dataset consists of `grayscale` and `color` images, as well as `velodyne` point clouds and `calibration` data. This raw data is annotated with object bounding boxes and instance segmentations. [read more](http://www.cvlibs.net/datasets/kitti/)
 
-
+10. `UAV123` (UAV123@CVPR2018) : a benchmark dataset for UAV-based object tracking. It consists of 123 video sequences captured by various UAVs in different scenarios. The dataset is divided into three subsets, i.e., UAV20L, UAV123_10fps and UAV123_30fps, according to the frame rate of the videos. [read more](https://ivul.kaust.edu.sa/Pages/pub-benchmark-simulator-uav.aspx)
 
 
 
@@ -68,7 +68,7 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
 * [x] 7. DOTA
 * [x] 8. VEDAI dataset ` need inspection`
 * [x] 9. KITTI
-* [ ] 10. UAV123
+* [x] 10. UAV123 `(rhis is not originarily a detection dataset, but it can be used for detection)`
 
 
 
