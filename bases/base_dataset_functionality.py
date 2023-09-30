@@ -203,9 +203,3 @@ class BaseDataset:
         elif type(ids) == int:
             return [self.imgs[ids]]
 
-    
-
-
-        
-
-

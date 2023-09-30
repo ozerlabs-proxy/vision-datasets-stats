@@ -14,7 +14,7 @@ For each task;
 For each dataset;
     - [ ] 1. Download the dataset
     - [ ] 2. Write dataset loaders
-    - [ ] 3. Extract the statistics
+    - [ ] 3. Extract the statistics 
     - [ ] 4. Save the statistics
     - [ ] 5. Visualize the statistics
     - [ ] 6. Compare the statistics
@@ -95,10 +95,12 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
 ### Multiobject Tracking Datasets [MOT]
 
 * [ ] 1. VisDrone-MOT 
-* [ ] 2. MOTS
+* [ ] 2. MOT-CHALLENGE
 * [ ] 3. SkyData
 * [ ] 4. KAIST
-* [ ] 5. UAV123
+* [ ] 5. Lvis
+* [ ] 6. TAO
+
 
 ## Video Instance Segmentation Datasets
 * [ ] 1. Youtube-VIS
