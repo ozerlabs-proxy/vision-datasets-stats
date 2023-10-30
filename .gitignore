@@ -12,7 +12,8 @@ data/kaist_roboflow
 # summaries
 backups
 # ignore files
-
+.idea
+*.idea
 *.json
 playground.ipynb
 
