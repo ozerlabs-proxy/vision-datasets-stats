@@ -8,7 +8,7 @@ import pandas as pd
 import numpy as np
 import shapely.geometry as shgeo
 
-from tqdm.auto import tqdm
+from tqdm import tqdm
 
 IMG_SIZE_512 = 512
 IMG_SIZE_1024 = 1024

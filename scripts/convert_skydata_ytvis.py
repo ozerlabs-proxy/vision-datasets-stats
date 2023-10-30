@@ -16,7 +16,7 @@ os.chdir(ROOT_DIR)
 import json
 import utils.utilities as common_utils
 from pathlib import Path
-from  tqdm.auto import tqdm
+from  tqdm import tqdm
 
 
 ##

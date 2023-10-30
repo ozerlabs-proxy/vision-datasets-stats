@@ -54,7 +54,7 @@ import json
 from pathlib import Path
 from PIL import Image
 import pandas as pd
-from tqdm.auto import tqdm
+from tqdm import tqdm
 
 
 def parse_image(image_id: int,

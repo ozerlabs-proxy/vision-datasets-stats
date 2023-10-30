@@ -9,7 +9,7 @@ import cv2
 import json
 from PIL import Image
 from pathlib import Path
-from  tqdm.auto import tqdm
+from  tqdm import tqdm
 
 # import polyiou
 """
