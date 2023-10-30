@@ -1,0 +1,7 @@
+dataset_name,images_count,min_resolution,max_resolution
+DOTA,1830,421 x 346,29200 x 27620
+skydata,8085,1920 x 740,1920 x 1080
+vhr_10,650,601 x 381,1728 x 1028
+vedai,1246,512 x 512,512 x 512
+coco2017,118287,72 x 51,640 x 640
+coco2014,82783,72 x 51,640 x 640

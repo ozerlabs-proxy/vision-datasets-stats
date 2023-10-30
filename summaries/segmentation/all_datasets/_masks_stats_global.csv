@@ -1,0 +1,7 @@
+dataset_name,_is_masks,masks_count
+DOTA,True,268627
+skydata,True,2818759
+vhr_10,True,3921
+vedai,True,3757
+coco2017,True,860001
+coco2014,True,604907

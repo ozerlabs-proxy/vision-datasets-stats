@@ -20,17 +20,17 @@ from  utils.utilities import _isArrayLike
 class BaseDatasetTracking:
 
         TAGS = [
-                "created_by",
+                # "created_by",
                 "dataset_name",
-                "description",
-                "task",
-                "video_count",
-                "annotations_count",
-                "_images_stats",
-                "_categories_stats",
-                "_super_categories_stats",
-                "_boxes_stats",
-                "_masks_stats"
+                "description"
+                # "task",
+                # "video_count",
+                # "annotations_count",
+                # "_images_stats",
+                # "_categories_stats",
+                # "_super_categories_stats",
+                # "_boxes_stats",
+                # "_masks_stats"
             ]
         
         def __init__(self, 

@@ -1,0 +1,12 @@
+dataset_name,_is_masks,masks_count
+DOTA,True,268627.0
+visdrone,False,
+kaist_pedestrian,False,
+kitti,False,
+skydata,True,2818759.0
+vhr_10,True,3921.0
+vedai,True,3757.0
+coco2017,True,860001.0
+coco2014,True,604907.0
+kaist_roboflow,False,
+uav123,False,

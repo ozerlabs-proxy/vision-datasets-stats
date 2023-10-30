@@ -46,9 +46,10 @@ subset = f"instances_{split}_sub"
 annotiation_file = Path(f"./data/{dataset_stem}/annotations/{subset}.json")
 D = YoutubeVisDataset(annotation_file=str(annotiation_file))
 
-# # generate and load stats
-# D.generate_dataset_statistics()
+# generate and load stats
+D.generate_dataset_statistics()
 
+xD = D 
 # # save the stats
 # D.save_dataset_statistics(save_path = f"./summaries/{TASK}",
 #                             dataset_name = f"coco{coco_year}",

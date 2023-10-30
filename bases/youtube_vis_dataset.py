@@ -49,48 +49,45 @@ class YoutubeVisDataset(BaseDatasetTracking):
             self.dataset = dataset
             self.createIndex()
             
-        def generate_dataset_statistics(self):
-            """
-                This function generates the dataset statistics. including: counts.
-                The statistics are saved in a dictionary with keys as the tags and values as the statistics.
-            """
-            print(f"[INFO] Generating dataset statistics for the {self.__class__.__name__}...")
-            
-            self.dataset_statistics['dataset_name'] = 'COCO'
-            self.dataset_statistics['dataset_size'] = len(self.dataset['images'])
-            self.dataset_statistics['description'] = 'COCO dataset'
-            self.dataset_statistics['created_by'] = 'Microsoft'
-            self.dataset_statistics['task'] = 'detection'
-            self.dataset_statistics['info'] = self.dataset['info']
-            other_stats = coco_like_datasets_tracking.generate_stats_coco_like(self)
-            self.dataset_statistics.update(other_stats)
+    def generate_dataset_statistics(self):
+        """
+            This function generates the dataset statistics. including: counts.
+            The statistics are saved in a dictionary with keys as the tags and values as the statistics.
+        """
+        print(f"[INFO] Generating dataset statistics for the {self.__class__.__name__}...")
+        
+        self.dataset_statistics['dataset_name'] = 'YTvis'
+        self.dataset_statistics['video_count'] = len(self.videos)
+        self.dataset_statistics['description'] = 'Youtube Video Instance Segmentation dataset'
+        self.dataset_statistics['created_by'] = 'Microsoft'
+        self.dataset_statistics['task'] = 'Vis'
+        self.dataset_statistics['info'] = self.dataset['info'] if 'info' in self.dataset else {}
+        other_stats = coco_like_datasets_tracking.generate_stats_coco_like(self)
+        self.dataset_statistics.update(other_stats)
         
         
     def createIndex(self):
         """Create index."""
         print('creating index...')
         anns, cats, imgs, vids = {}, {}, {}, {}
-        imgToAnns, catToImgs, vidToImgs, vidToInstances,instancesToImgs = ( defaultdict(list), 
-                                                                            defaultdict(list), 
-                                                                            defaultdict(list), 
-                                                                            defaultdict(list), 
-                                                                            defaultdict(list)
-                                                                            )
+        imgToAnns, catToVids,vidToCats, vidToImgs, vidToTracks,tracksToFrames, catsToTracks  = ( defaultdict(list), 
+                                                                                    defaultdict(list), 
+                                                                                    defaultdict(list), 
+                                                                                    defaultdict(list), 
+                                                                                    defaultdict(list), 
+                                                                                    defaultdict(list), 
+                                                                                    defaultdict(list)
+                                                                                    )
         if 'videos' in self.dataset:
             for video in self.dataset['videos']:
                 vids[video['id']] = video
 
         if 'annotations' in self.dataset:
             for ann in self.dataset['annotations']:
-                imgToAnns[ann['image_id']].append(ann)
                 anns[ann['id']] = ann
-                if 'instance_id' in ann:
-                    instancesToImgs[ann['instance_id']].append(ann['image_id'])
-                    if 'video_id' in ann and \
-                        ann['instance_id'] not in \
-                            vidToInstances[ann['video_id']]:
-                        vidToInstances[ann['video_id']].append(
-                            ann['instance_id'])
+                if 'id' in ann:
+                    if 'video_id' in ann and ann['id'] not in vidToTracks[ann['video_id']]:
+                        vidToTracks[ann['video_id']].append(ann['id'])
 
         if 'images' in self.dataset:
             for img in self.dataset['images']:
@@ -103,16 +100,42 @@ class YoutubeVisDataset(BaseDatasetTracking):
 
         if 'annotations' in self.dataset and 'categories' in self.dataset:
             for ann in self.dataset['annotations']:
-                catToImgs[ann['category_id']].append(ann['image_id'])
+                if ann["video_id"] not in catToVids[ann['category_id']]:
+                    catToVids[ann['category_id']].append(ann['video_id'])
+                if ann["category_id"] not in vidToCats[ann['video_id']]:
+                    vidToCats[ann['video_id']].append(ann['category_id'])
+                if ann["id"] not in catsToTracks[ann['category_id']]:
+                    catsToTracks[ann['category_id']].append(ann['id'])
+        
+        if 'annotations' in self.dataset:
+            for ann in self.dataset['annotations']:
+                areas_or_boxes_or_segmentations = ann['areas'] if 'areas' in ann \
+                    else ann['segmentations'] if 'segmentations' in ann \
+                    else ann['boxes'] if 'boxes' in ann \
+                    else None
+                    
+                non_none_boxes_filenames = []
+                if areas_or_boxes_or_segmentations is not None:
+                    
+                    #get non none boxes indices
+                    non_none_boxes = [i for i, e in enumerate(areas_or_boxes_or_segmentations) if e is not None]
+                    #get filenames of non none boxes
+                    
+                    non_none_boxes_filenames = np.array(vids[ann['video_id']]["file_names"])[non_none_boxes]
+                
+                tracksToFrames[ann['id']] = non_none_boxes_filenames
+        
 
         print('index created!')
 
         self.anns = anns
         self.imgToAnns = imgToAnns
-        self.catToImgs = catToImgs
+        self.catToVids = catToVids
         self.imgs = imgs
         self.cats = cats
         self.videos = vids
         self.vidToImgs = vidToImgs
-        self.vidToInstances = vidToInstances
-        self.instancesToImgs = instancesToImgs
+        self.vidToTracks = vidToTracks
+        self.catsToTracks = catsToTracks
+        self.vidToCats = vidToCats
+        self.tracksToFrames = tracksToFrames

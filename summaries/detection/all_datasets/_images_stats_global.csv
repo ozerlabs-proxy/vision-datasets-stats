@@ -1,0 +1,12 @@
+dataset_name,images_count,min_resolution,max_resolution
+DOTA,1830,421 x 346,29200 x 27620
+visdrone,6471,480 x 360,2000 x 1500
+kaist_pedestrian,17498,640 x 512,640 x 512
+kitti,7481,1224 x 370,1241 x 376
+skydata,8085,1920 x 740,1920 x 1080
+vhr_10,650,601 x 381,1728 x 1028
+vedai,1246,512 x 512,512 x 512
+coco2017,118287,72 x 51,640 x 640
+coco2014,82783,72 x 51,640 x 640
+kaist_roboflow,3296,554 x 442,640 x 512
+uav123,112578,720 x 480,1280 x 720
