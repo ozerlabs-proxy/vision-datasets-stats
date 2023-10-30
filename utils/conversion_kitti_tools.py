@@ -14,7 +14,7 @@ import json
 import PIL.Image as Image
 import os 
 from pathlib import Path
-from tqdm.auto import tqdm
+from tqdm import tqdm
 import json
 import numpy as np
 

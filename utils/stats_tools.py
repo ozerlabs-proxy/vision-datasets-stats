@@ -11,7 +11,7 @@ import json
 from pathlib import Path
 import pandas as pd
 import numpy as np
-from tqdm.auto import tqdm
+from tqdm import tqdm
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -100,6 +100,32 @@ def plot_save_per_dataset_ratios_hist(_ratios,
     print(f"[INFO] Saved.")
 
 
+def summarize_global_tracks_stats_plot_and_save(global_tracks_stats_df,
+                                                  save_path,
+                                                  file_name):
+    
+    
+    '''
+    Given tracks stats, plot and save tracks stats
+    '''
+    print(f"[INFO] Global tracks stats ....")
+    save_path = Path(save_path)
+    global_tracks_stats_df=pd.DataFrame(global_tracks_stats_df)
+
+    global_tracks_stats_df.plot.bar(x='dataset_name',
+                                            figsize=(15,10),
+                                            title='(instances) tracks_stats',
+                                            xlabel="",
+                                            )
+    plt.xticks(rotation=90)
+    plt.savefig(str(save_path/f'{file_name}.png'), dpi=300, bbox_inches='tight')
+    plt.close()
+
+    save_df_to_csv(df=global_tracks_stats_df,
+                                save_path=save_path,
+                                file_name=f'{file_name}.csv')
+    
+    
 
 def summarize_global_areas_ranges_stats_plot_and_save(global_areas_ranges_stats_df,
                                                   save_path,
@@ -193,7 +219,7 @@ def summarize_global_images_plot_and_save(global_summary_images_stats,
                                 save_path=save_path,
                                 file_name=f'{file_name}.csv')
 
-#************** Category stats ******************#
+#************** Category stats ******************#    
 def summarize_category_stats(dataset_name,
                             _categories_stats,
                             save_path):
@@ -217,10 +243,15 @@ def plot_and_save_per_category_stats(per_category_stats,
     """
     save_path = Path(save_path)/dataset_name/"plots"
     save_path.mkdir(parents=True, exist_ok=True)
+    csv_save_path = save_path/f"{dataset_name}_per_category_stats.csv"
     save_path = save_path/f"{dataset_name}_per_category_stats.png"
     # convert to dataframe
     print(f"[INFO] saving plot ....")
-    per_category_stats_df = pd.DataFrame(per_category_stats, index=[0])
+    try:
+        # per_category_stats_df = pd.DataFrame(per_category_stats)
+        per_category_stats_df = pd.DataFrame(per_category_stats, index=[0])
+    except:
+        per_category_stats_df = pd.DataFrame(per_category_stats)
     # plot
     fig, ax = plt.subplots(figsize=(10, 5))
     ax.set_title(f'{dataset_name} per category stats')
@@ -231,6 +262,17 @@ def plot_and_save_per_category_stats(per_category_stats,
     # plt.show()
     plt.savefig(save_path,dpi=300, bbox_inches='tight')
     plt.close()
+    
+    # save to csv
+    print(f"[INFO] saving csv ....")
+    try:
+        save_df_to_csv(per_category_stats_df,
+                            save_path=str(csv_save_path.parent),
+                            file_name=str(csv_save_path.name))
+    except Exception as e:
+        # print(e)
+        print(f"[ERROR] could not save {csv_save_path}")
+        
     print(f"[INFO] Saved.")
 
 
