@@ -21,7 +21,7 @@ For each dataset;
     - [ ] 7. Write a report
 
 
-
+<!-- 
 ## Datasets
 
 ### Detection Datasets
@@ -56,69 +56,114 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
 10. `UAV123` (UAV123@CVPR2018) : a benchmark dataset for UAV-based object tracking. It consists of 123 video sequences captured by various UAVs in different scenarios. The dataset is divided into three subsets, i.e., UAV20L, UAV123_10fps and UAV123_30fps, according to the frame rate of the videos. [read more](https://ivul.kaust.edu.sa/Pages/pub-benchmark-simulator-uav.aspx)
 
 
+ -->
 
-## Detection datasets 
+## Task based datasets lookup table
 
-* [x] 1. COCO
-* [x] 2. SkyData
-* [x] 3. VisDrone DET
-* [x] 4. ~~KAIST (not sure it is original)~~
-* [x] 5. KAIST (larger version)
-* [x] 6. VHR-10 
-* [x] 7. DOTA
-* [x] 8. VEDAI dataset ` need inspection`
-* [x] 9. KITTI
-* [x] 10. UAV123 `(rhis is not originarily a detection dataset, but it can be used for detection)`
+<table style="list-style: none;">
+    <thead>
+        <tr>
+            <th>Task</th>
+            <th>Detection</th>
+            <th>Semantic Segmentation</th>
+            <th>Instance Segmentation</th>
+            <th>Single Object Tracking</th>
+            <th>Multi Object Tracking</th>
+            <th>Video Instance Segmentation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Dataset</th>
+            <td><!-- det -->
+                <li>✓ COCO</li>
+                <li>✓ SkyData </li>
+                <li>✓ VisDrone DET </li>
+                <li>✓ KAIST </li>
+                <li>✓ VHR-10 </li>
+                <li>✓ DOTA </li>
+                <li>✓ VEDAI </li>
+                <li>✓ KITTI </li>
+            </td>
+            <td><!-- sem -->
+                <li> COCO</li>
+                <li> SkyData </li>
+                <li> KITTI </li>
+                <li> VHR-10 </li>
+                <li> MOTS </li>
+            </td>
+            <td><!-- seg -->
+                <li>✓ COCO</li>
+                <li>✓ SkyData </li>
+                <li>✓ VHR-10 </li>
+            </td>
+            <td><!-- sot -->
+                <li>SkyData</li>
+                <!-- <li> VisDrone-SOT </li> -->
+                <li> UAV123 </li>
+                <li> OTB100 </li>
+                <li> GOT10k </li>
+                <li> VOT2018 </li>
+                <li> LaSOT </li>
+            </td>
+            <td><!-- mot -->
+                <li> SkyData</li>
+                <li> VisDrone-MOT </li>
+                <li> MOT-CHALLENGE </li>
+                <li> SkyData </li>
+                <li> KAIST </li>
+                <li> Lvis </li>
+                <li> TAO </li>
+            </td>
+            <td><!-- vis -->
+                <li>✓ SkyData</li>
+                <li>✓ Youtube-VIS 2018 </li>
+                <li>✓ Youtube-VIS 2021 </li>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
-
-
-## Segmentation datasets
-### Semantic Segmentation Datasets
-* [ ] 1. COCO
-* [ ] 2. SkyData
-* [ ] 3. KITTI
-* [ ] 4. VHR-10
-* [ ] 5. MOTS
-
-### Instance Segmentation
-* [ ] 1. COCO
-* [ ] 2. SkyData
-* [ ] 3. VHR-10
-
-
-## Tracking Datasets
-### Single Object Tracking Datasets
-* [ ] 1. SkyData
-* [ ] 2. VisDrone-SOT
-* [ ] 3. UAV123
-
-### Multiobject Tracking Datasets [MOT]
-
-* [ ] 1. VisDrone-MOT 
-* [ ] 2. MOT-CHALLENGE
-* [ ] 3. SkyData
-* [ ] 4. KAIST
-* [ ] 5. Lvis
-* [ ] 6. TAO
-
-
-## Video Instance Segmentation Datasets
-* [ ] 1. Youtube-VIS
-* [ ] 2. SkyData
 
 # Stats 
 
 There is a number of stats about datasets that can be generated. These may vary depending on the task, for most we will derive the following:
-
-* [ ] 1. Number of images
-* [ ] 2. Number of objects
-* [ ] 3. Number of classes
-* [ ] 4. Number of instances per class
-* [ ] 5. Average number of instances per image
-* [ ] 6. Average number of instances per class
+<table>
+    <thead>
+        <tr>
+            <th> - </th>
+            <th>Detection</th>
+            <th>Tracking</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Stats</th>
+            <td>
+                <ol>
+                    <li>✓ Number of images</li>
+                    <li>✓ Number of objects</li>
+                    <li>✓ Number of classes</li>
+                    <li>✓ Number of instances per class</li>
+                    <li>✓ Average number of instances per image</li>
+                    <li>✓ Average number of instances per class</li>
+                </ol>
+            </td>
+            <td>
+                <ol>
+                    <li>✓ Number of videos</li>
+                    <li>✓ Number of tracks</li>
+                    <li>✓ Number of categories</li>
+                    <li>✓ average track length</li>
+                    <li>✓ average number of tracks per video</li>
+                    <li>✓ average number of tracks per category</li>
+                    <li>✓ video lengths</li>
+                    <li>✓ min-max resolutions</li>
+                    <li>✓ areas stats ... </li>
+                </ol>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 # Note to self 
-
-- [ ] 1. Create a list of datasets to be used for each task
-- [ ] 2. Create a list of models to be used for each task
-- [ ] 3. get necessary statistics from the above datasets
