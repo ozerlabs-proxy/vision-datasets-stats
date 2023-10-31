@@ -1,2 +1,3 @@
 dataset_name,total_tracks,average_track_length,min_track_length,max_track_length,average_tracks_per_video
+skydata,3943,714.8767435962465,1,2470,563.2857142857143
 ytvis_2019,3774,25.731319554848966,1,36,1.6863270777479893
