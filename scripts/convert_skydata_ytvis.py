@@ -42,7 +42,7 @@ def read_data(fullpath):
 
 def writeJSON(dictionary, filepath):
     ##
-    print(f"[INFO] dumpng data to {filepath}")
+    print(f"[INFO] dumping data to {filepath}")
     ##
     with open(filepath, "w") as outfile:
         json.dump(dictionary, outfile)
@@ -89,6 +89,7 @@ for vid in skydata['videos']:
     new_vid['file_names'] = []
     for im in files_by_videos[new_vid['id']]:
         new_vid['file_names'].append(im['file_name'])
+        
 
     skyvos['videos'].append(new_vid)
 
@@ -146,87 +147,90 @@ for key, value in annotations_by_videos_and_trackid.items():
     global_id_tracker += 1
 
 skyvos['categories'] = skydata['categories']
+for i,cat in enumerate(skyvos['categories']):
+    cat['id'] += 1  # correction for background class
+    skyvos['categories'][i] = cat
 
 ## dowmsample and divide
 
-DOWNSAMPLE_RATIO = 30
-FRAME_COUNT = 3
-FRAME_LIMIT = -1
+# DOWNSAMPLE_RATIO = 30
+# FRAME_COUNT = 3
+# FRAME_LIMIT = -1
 
-new_videos = []
+# new_videos = []
 
-global_video_id_tracker = 0
+# global_video_id_tracker = 0
 
-new_video_id_start_points = {}
+# new_video_id_start_points = {}
 
-print(f"[INFO] downsampling and dividing")
+# print(f"[INFO] downsampling and dividing")
 
-for vid in tqdm(skyvos['videos']):
-    vid['file_names'] = vid['file_names'][0::DOWNSAMPLE_RATIO]
-    vid['file_names'] = vid['file_names'][0:FRAME_LIMIT]
+# for vid in tqdm(skyvos['videos']):
+#     vid['file_names'] = vid['file_names'][0::DOWNSAMPLE_RATIO]
+#     vid['file_names'] = vid['file_names'][0:FRAME_LIMIT]
 
-    if FRAME_COUNT > 0:
-        N = (len(vid['file_names']) // FRAME_COUNT) * FRAME_COUNT
+#     if FRAME_COUNT > 0:
+#         N = (len(vid['file_names']) // FRAME_COUNT) * FRAME_COUNT
 
-        new_video_id_start_points[vid['id']] = global_video_id_tracker
+#         new_video_id_start_points[vid['id']] = global_video_id_tracker
 
-        for idx in range(0,N,FRAME_COUNT):
-            new_vid = {}
-            new_vid['id'] = global_video_id_tracker
-            new_vid['width'] = vid['width']
-            new_vid['height'] = vid['height']
-            new_vid['file_names'] = vid['file_names'][idx:idx+FRAME_COUNT]
+#         for idx in range(0,N,FRAME_COUNT):
+#             new_vid = {}
+#             new_vid['id'] = global_video_id_tracker
+#             new_vid['width'] = vid['width']
+#             new_vid['height'] = vid['height']
+#             new_vid['file_names'] = vid['file_names'][idx:idx+FRAME_COUNT]
 
-            new_videos.append(new_vid)
+#             new_videos.append(new_vid)
 
-            global_video_id_tracker += 1
+#             global_video_id_tracker += 1
 
-if FRAME_COUNT > 0:
-    skyvos['videos'] = new_videos
+# if FRAME_COUNT > 0:
+#     skyvos['videos'] = new_videos
 
-new_annotations = []
+# new_annotations = []
 
-global_annotation_id_tracker = 0
+# global_annotation_id_tracker = 0
 
-for ann in skyvos['annotations']:
-    ann['segmentations'] = ann['segmentations'][0::DOWNSAMPLE_RATIO]
-    ann['areas'] = ann['areas'][0::DOWNSAMPLE_RATIO]
-    ann['bboxes'] = ann['bboxes'][0::DOWNSAMPLE_RATIO]
+# for ann in skyvos['annotations']:
+#     ann['segmentations'] = ann['segmentations'][0::DOWNSAMPLE_RATIO]
+#     ann['areas'] = ann['areas'][0::DOWNSAMPLE_RATIO]
+#     ann['bboxes'] = ann['bboxes'][0::DOWNSAMPLE_RATIO]
 
-    ann['segmentations'] = ann['segmentations'][0:FRAME_LIMIT]
-    ann['areas'] = ann['areas'][0:FRAME_LIMIT]
-    ann['bboxes'] = ann['bboxes'][0:FRAME_LIMIT]
+#     ann['segmentations'] = ann['segmentations'][0:FRAME_LIMIT]
+#     ann['areas'] = ann['areas'][0:FRAME_LIMIT]
+#     ann['bboxes'] = ann['bboxes'][0:FRAME_LIMIT]
 
-    if FRAME_COUNT > 0:
+#     if FRAME_COUNT > 0:
 
-        N = (len(ann['segmentations']) // FRAME_COUNT) * FRAME_COUNT
+#         N = (len(ann['segmentations']) // FRAME_COUNT) * FRAME_COUNT
 
-        video_id = new_video_id_start_points[ann['video_id']]
+#         video_id = new_video_id_start_points[ann['video_id']]
 
-        for idx in range(0,N,FRAME_COUNT):
+#         for idx in range(0,N,FRAME_COUNT):
 
-            new_ann = {}
-            new_ann['id'] = global_annotation_id_tracker
-            new_ann['video_id'] = video_id
-            new_ann['category_id'] = ann['category_id']
-            new_ann['segmentations'] = ann['segmentations'][idx:idx+FRAME_COUNT]
-            new_ann['areas'] = ann['areas'][idx:idx + FRAME_COUNT]
-            new_ann['bboxes'] = ann['bboxes'][idx:idx + FRAME_COUNT]
-            new_ann['iscrowd'] = ann['iscrowd']
+#             new_ann = {}
+#             new_ann['id'] = global_annotation_id_tracker
+#             new_ann['video_id'] = video_id
+#             new_ann['category_id'] = ann['category_id']
+#             new_ann['segmentations'] = ann['segmentations'][idx:idx+FRAME_COUNT]
+#             new_ann['areas'] = ann['areas'][idx:idx + FRAME_COUNT]
+#             new_ann['bboxes'] = ann['bboxes'][idx:idx + FRAME_COUNT]
+#             new_ann['iscrowd'] = ann['iscrowd']
 
-            new_annotations.append(new_ann)
+#             new_annotations.append(new_ann)
 
-            video_id += 1
-            global_annotation_id_tracker += 1
+#             video_id += 1
+#             global_annotation_id_tracker += 1
 
-if FRAME_COUNT > 0:
-    skyvos['annotations'] = new_annotations
+# if FRAME_COUNT > 0:
+#     skyvos['annotations'] = new_annotations
 
 print("annotation convert completed.")
 
 common_utils.save_json(skyvos, 
                         "data/skydata/annotations",
-                        "train_SKYVIS_2_ds5_fr3_alldata.json")
+                        "train_SKYVIS_3_alldata.json")
 
 print("generation of json file complated.")
 

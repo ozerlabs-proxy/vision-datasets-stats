@@ -24,12 +24,12 @@ def generate_stats_coco_like(D:BaseDatasetTracking) -> dict:
     stats["info"] = D.dataset["info"]
     
     #images stats
-    stats["_general_stats"] = get_general_videos_stats(D.videos.values())
+    stats["_general_stats"] = get_general_videos_stats(list(D.videos.values()))
 
     # #category stats 
-    stats["_cats"] = categories_and_super_categories_stats(D.cats.values())
+    stats["_cats"] = categories_and_super_categories_stats(list(D.cats.values()))
     
-    stats["_categories_stats"] = get_categories_stats(D.cats.values(),
+    stats["_categories_stats"] = get_categories_stats(list(D.cats.values()),
                                                         D.catsToTracks, 
                                                         D.catToVids)
     
@@ -121,11 +121,10 @@ def get_general_videos_stats(videos : list[dict] = []):
     _stats["max_width"] = max([video["width"] for video in videos])
     
     
-    _stats["shortest_video"] = min([video["length"] for video in videos])
-    _stats["longest_video"] = max([video["length"] for video in videos])
-    _stats["average_video_length"] = np.mean([video["length"] for video in videos])
-    
-    
+    tag = "length" if "length" in list(list(videos)[0].keys()) else "file_names"
+    _stats["shortest_video"] = min([tag if tag =="length" else len(video[tag]) for video in videos])
+    _stats["longest_video"] = max([tag if tag =="length" else len(video[tag]) for video in videos])
+    _stats["average_video_length"] = np.mean([tag if tag =="length" else len(video[tag])  for video in videos])
     
     return _stats
 
