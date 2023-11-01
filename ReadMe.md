@@ -7,7 +7,7 @@ For the 3 main tasks in computer vision (`Detection`, `Segmentation`, and `Track
 To do this we will need to load each dataset and extract it's statistics programatically. We will also need to visualize the statistics in a way that is easy to understand. We will also need to compare the statistics of each dataset and see how they compare to each other.
 
 
-The task flow will be as follows:
+<!-- The task flow will be as follows:
 
 For each task;
 * research task specific datasets. 
@@ -19,7 +19,7 @@ For each dataset;
     - [ ] 5. Visualize the statistics
     - [ ] 6. Compare the statistics
     - [ ] 7. Write a report
-
+ -->
 
 <!-- 
 ## Datasets
@@ -78,7 +78,7 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
             <td><!-- det -->
                 <li>✓ COCO</li>
                 <li>✓ SkyData </li>
-                <li>✓ VisDrone DET </li>
+                <li>✓ VisDrone</li>
                 <li>✓ KAIST </li>
                 <li>✓ VHR-10 </li>
                 <li>✓ DOTA </li>
@@ -101,23 +101,22 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
                 <li>SkyData</li>
                 <!-- <li> VisDrone-SOT </li> -->
                 <li> UAV123 </li>
-                <li> OTB100 </li>
-                <li> GOT10k </li>
+                <!-- <li> OTB100 </li> -->
+                <!-- <li> GOT10k </li> -->
                 <li> VOT2018 </li>
-                <li> LaSOT </li>
+                <!-- <li> LaSOT </li> -->
             </td>
             <td><!-- mot -->
-                <li> SkyData</li>
-                <li> VisDrone-MOT </li>
+                <li>✓ SkyData</li>
+                <li>✓ VisDrone-MOT </li>
                 <li> MOT-CHALLENGE </li>
-                <li> SkyData </li>
                 <li> KAIST </li>
-                <li> Lvis </li>
-                <li> TAO </li>
+                <!-- <li> Lvis </li>
+                <li> TAO </li> -->
             </td>
             <td><!-- vis -->
                 <li>✓ SkyData</li>
-                <li>✓ Youtube-VIS 2018 </li>
+                <li>✓ Youtube-VIS 2019 </li>
                 <li>✓ Youtube-VIS 2021 </li>
             </td>
         </tr>

@@ -122,9 +122,9 @@ def get_general_videos_stats(videos : list[dict] = []):
     
     
     tag = "length" if "length" in list(list(videos)[0].keys()) else "file_names"
-    _stats["shortest_video"] = min([tag if tag =="length" else len(video[tag]) for video in videos])
-    _stats["longest_video"] = max([tag if tag =="length" else len(video[tag]) for video in videos])
-    _stats["average_video_length"] = np.mean([tag if tag =="length" else len(video[tag])  for video in videos])
+    _stats["shortest_video"] = min([video[tag] if tag =="length" else len(video[tag]) for video in videos])
+    _stats["longest_video"] = max([video[tag] if tag =="length" else len(video[tag]) for video in videos])
+    _stats["average_video_length"] = np.mean([video[tag] if tag =="length" else len(video[tag])  for video in videos])
     
     return _stats
 
