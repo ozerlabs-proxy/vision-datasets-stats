@@ -8,21 +8,20 @@ while os.path.basename(ROOT_DIR) != 'DatasetsStatistics':
 sys.path.insert(0,ROOT_DIR)
 os.chdir(ROOT_DIR)
 
-# ##
+
+
 TASK='MOT'
 
-## 4. SKYDATA MOT dataset
-from bases.skydata_vis_dataset import SkyDataVis
+##**5. TAO dataset**
+from bases.tao_mot_coco import TAO
 from pathlib import Path
 
 dataset_year = ""
-dataset_stem = f"skydata{dataset_year}"
+dataset_stem = f"tao{dataset_year}"
 split = "train"
-# subset = "train_SKYVIS_ds5_fr3_alldata"
-# "data/skydata/annotations/train_SKYVIS_3_alldata.json"
-subset = f"{split}_SKYVIS_3_alldata"
+subset = f"{split}_with_freeform"
 annotiation_file = Path(f"./data/{dataset_stem}/annotations/{subset}.json")
-D = SkyDataVis(annotation_file=str(annotiation_file))
+D = TAO(annotation_file=str(annotiation_file))
 
 # generate and load stats
 D.generate_dataset_statistics()

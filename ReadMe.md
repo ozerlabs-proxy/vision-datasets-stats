@@ -105,8 +105,10 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
             <td><!-- mot -->
                 <li>✓ SkyData</li>
                 <li>✓ VisDrone-MOT </li>
-                <li>✓ MOT-CHALLENGE </li>
-                <li> KAIST </li>
+                <li>✓ MOT-17 </li>
+                <li>✓ MOT-20 </li>
+                <li>✓ DanceTrack </li>
+                <!-- <li> KAIST </li> -->
                 <!-- <li> Lvis </li>
                 <li> TAO </li> -->
             </td>

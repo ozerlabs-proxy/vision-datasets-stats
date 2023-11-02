@@ -85,8 +85,8 @@ def get_categories_stats(cats,
         
     }
     _stats["category_names"] = [cat["name"] for cat in cats]
-    _stats["per_cat_tracks"] = [len(catsToTracks[cat["id"]]) for cat in cats]
-    _stats["cat_in_n_vids"] = [len(catToVids[cat["id"]]) for cat in cats]
+    _stats["per_cat_tracks"] = [0  if cat["id"] not in catsToTracks else len(catsToTracks[cat["id"]]) for cat in cats]
+    _stats["cat_in_n_vids"] = [0 if cat["id"] not in catToVids else len(catToVids[cat["id"]]) for cat in cats]
     
     return _stats
     
