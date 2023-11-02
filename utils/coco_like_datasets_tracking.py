@@ -21,7 +21,7 @@ def generate_stats_coco_like(D:BaseDatasetTracking) -> dict:
     stats = defaultdict(dict)
 
     #info 
-    stats["info"] = D.dataset["info"]
+    stats["info"] =  {} if "info" not in D.dataset else D.dataset["info"] 
     
     #images stats
     stats["_general_stats"] = get_general_videos_stats(list(D.videos.values()))
@@ -33,11 +33,21 @@ def generate_stats_coco_like(D:BaseDatasetTracking) -> dict:
                                                         D.catsToTracks, 
                                                         D.catToVids)
     
+    #check if instance of  a class has a given attribute(variable) in python 
     
     
-    # general areas stats
-    stats["_areas_stats"] = get_areas_stats(D.anns)   
+    useAnns = None
+    try:
+        useAnns = D.adjustedAnns 
+        if useAnns is None:
+            raise Exception("Anns should not be None")
+    except:
+        useAnns = D.anns
     
+    assert useAnns is not None, "Anns should not be None"
+  # general areas stats
+    stats["_areas_stats"] = get_areas_stats(useAnns)
+
     #tracks stats
     stats["tracks_stats"] = get_tracks_stats( D.tracksToFrames,
                                                 D.vidToTracks)
@@ -93,7 +103,9 @@ def categories_and_super_categories_stats(categories):
     
     _stats["categories_count"] = len(categories)
     _stats["categories"] = {cat["id"]: cat["name"] for cat in categories}
-    _stats["super_categories"] = { i:v for i,v in enumerate(list(set([cat["supercategory"] for cat in categories])))}
+    _stats["super_categories"] ={}
+    if "supercategory" in categories[0]:
+        _stats["super_categories"] = { i:v for i,v in enumerate(list(set([cat["supercategory"] for cat in categories])))} 
     _stats["super_categories_count"] = len(_stats["super_categories"])
     
     return _stats

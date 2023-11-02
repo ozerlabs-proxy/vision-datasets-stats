@@ -65,9 +65,9 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
         <tr>
             <th>Task</th>
             <th>Detection</th>
-            <th>Semantic Segmentation</th>
+            <!-- <th>Semantic Segmentation</th> -->
             <th>Instance Segmentation</th>
-            <th>Single Object Tracking</th>
+            <!-- <th>Single Object Tracking</th> -->
             <th>Multi Object Tracking</th>
             <th>Video Instance Segmentation</th>
         </tr>
@@ -85,31 +85,27 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
                 <li>✓ VEDAI </li>
                 <li>✓ KITTI </li>
             </td>
-            <td><!-- sem -->
+            <!-- <td>
                 <li> COCO</li>
                 <li> SkyData </li>
                 <li> KITTI </li>
                 <li> VHR-10 </li>
                 <li> MOTS </li>
-            </td>
+            </td> -->
             <td><!-- seg -->
                 <li>✓ COCO</li>
                 <li>✓ SkyData </li>
                 <li>✓ VHR-10 </li>
             </td>
-            <td><!-- sot -->
-                <li>SkyData</li>
-                <!-- <li> VisDrone-SOT </li> -->
-                <li> UAV123 </li>
-                <!-- <li> OTB100 </li> -->
-                <!-- <li> GOT10k </li> -->
-                <li> VOT2018 </li>
-                <!-- <li> LaSOT </li> -->
-            </td>
+            <!-- <td>
+                <li>SkyData</li>               
+                <li> UAV123 </li>               
+                <li> VOT2018 </li>              
+            </td> -->
             <td><!-- mot -->
                 <li>✓ SkyData</li>
                 <li>✓ VisDrone-MOT </li>
-                <li> MOT-CHALLENGE </li>
+                <li>✓ MOT-CHALLENGE </li>
                 <li> KAIST </li>
                 <!-- <li> Lvis </li>
                 <li> TAO </li> -->

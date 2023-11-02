@@ -1,0 +1,13 @@
+category_names,per_cat_tracks,cat_in_n_vids
+ignored regions,62369,53
+pedestrian,234305,56
+people,94396,55
+bicycle,40255,52
+car,505301,53
+van,46940,50
+truck,30498,46
+tricycle,28338,45
+awning-tricycle,13011,35
+bus,9653,26
+motor,102819,56
+others,1474,17
