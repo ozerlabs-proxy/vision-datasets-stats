@@ -64,7 +64,7 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
     <thead>
         <tr>
             <th>Task</th>
-            <th>Detection</th>
+            <th> Detection Based </th>
             <!-- <th>Semantic Segmentation</th> -->
             <th>Instance Segmentation</th>
             <!-- <th>Single Object Tracking</th> -->
@@ -108,9 +108,10 @@ We will explore the `DOTA-v2.0` dataset. [read more...](https://captain-whu.gith
                 <li>✓ MOT-17 </li>
                 <li>✓ MOT-20 </li>
                 <li>✓ DanceTrack </li>
+                <li>✓ TAO </li>
                 <!-- <li> KAIST </li> -->
                 <!-- <li> Lvis </li>
-                <li> TAO </li> -->
+                 -->
             </td>
             <td><!-- vis -->
                 <li>✓ SkyData</li>
