@@ -23,16 +23,12 @@ sys.path.insert(0,ROOT_DIR)
 os.chdir(ROOT_DIR)
 
 # ##
-TASK='Tracking'
+TASK='VIS'
 
 # ## [markdown]
-# ## **1. YTvis dataset**
+# ## **1. YTvis 2018 dataset**
 # 
 # ``` python
-# 
-# ```
-
-# ##
 
 ## 1. YTvis dataset
 
@@ -49,12 +45,46 @@ D = YoutubeVisDataset(annotation_file=str(annotiation_file))
 # generate and load stats
 D.generate_dataset_statistics()
 
-xD = D 
-# # save the stats
-# D.save_dataset_statistics(save_path = f"./summaries/{TASK}",
-#                             dataset_name = f"coco{coco_year}",
-#                             file_name = f"{subset}_stats.json"
-#                             )
+# save the stats
+D.save_dataset_statistics(save_path = f"./summaries/{TASK}",
+                            dataset_name = f"{dataset_stem}",
+                            file_name = f"{subset}_stats.json"
+                            )
+print(f"[INFO] Saved")
 
+# ```
+
+# ## [markdown]
+# ## **2. SkyData dataset**
+# 
+# ``` python
+# 
+# 
+# ```
+
+# ##
+
+## 2. SkyData dataset
+
+from bases.skydata_vis_dataset import SkyDataVis
+from pathlib import Path
+
+dataset_year = ""
+dataset_stem = f"skydata{dataset_year}"
+split = "train"
+# subset = "data/skydata/annotations/train_SKYVIS_3_alldata.json"
+subset = f"{split}_SKYVIS_3_alldata"
+annotiation_file = Path(f"./data/{dataset_stem}/annotations/{subset}.json")
+D = SkyDataVis(annotation_file=str(annotiation_file))
+
+# generate and load stats
+D.generate_dataset_statistics()
+
+# save the stats
+D.save_dataset_statistics(save_path = f"./summaries/{TASK}",
+                            dataset_name = f"{dataset_stem}",
+                            file_name = f"{subset}_stats.json"
+                            )
+print(f"[INFO] Saved")
 
 

@@ -1,5 +1,6 @@
 import os
 import json
+from tqdm import tqdm
 import numpy as np
 from typing import Dict, List, Tuple, Union
 from collections import defaultdict
@@ -17,14 +18,13 @@ import itertools
 import os
 from collections import defaultdict
 import sys
-from tqdm import tqdm
 
 # has methods to be implemented
 from .base_dataset_functionality import BaseDatasetTracking
 from   utils import coco_like_datasets_tracking 
 from  utils.utilities import _isArrayLike
 
-class SkyDataVis(BaseDatasetTracking):
+class DanceTrack(BaseDatasetTracking):
     
     def __init__(self, annotation_file=None):
         """
@@ -57,11 +57,11 @@ class SkyDataVis(BaseDatasetTracking):
         """
         print(f"[INFO] Generating dataset statistics for the {self.__class__.__name__}...")
         
-        self.dataset_statistics['dataset_name'] = 'SkyData'
+        self.dataset_statistics['dataset_name'] = 'DanceTrack'
         self.dataset_statistics['video_count'] = len(self.videos)
-        self.dataset_statistics['description'] = 'SkyDataVis Video Instance Segmentation dataset'
-        self.dataset_statistics['created_by'] = 'Ozerlabs'
-        self.dataset_statistics['task'] = 'Vis'
+        self.dataset_statistics['description'] = 'DanceTrack is a benchmark for tracking multiple objects in uniform appearance and diverse motion.'
+        self.dataset_statistics['created_by'] = 'DanceTrack'
+        self.dataset_statistics['task'] = 'MOT'
         self.dataset_statistics['info'] = self.dataset['info'] if 'info' in self.dataset else {}
         other_stats = coco_like_datasets_tracking.generate_stats_coco_like(self)
         self.dataset_statistics.update(other_stats)
@@ -70,38 +70,84 @@ class SkyDataVis(BaseDatasetTracking):
     def createIndex(self):
         """Create index."""
         print('creating index...')
-        anns, cats, imgs, vids = {}, {}, {}, {}
-        imgToAnns, catToVids,vidToCats, vidToImgs, vidToTracks,tracksToFrames, catsToTracks  = ( defaultdict(list), 
+        anns, cats, imgs, vids , adjustedAnns= {}, {}, {}, {},{}
+        imgToAnns, vidToInstances, instancesToImgs, catToVids,vidToCats, vidToImgs, vidToTracks,tracksToFrames, catsToTracks  = ( defaultdict(list), 
                                                                                     defaultdict(list), 
                                                                                     defaultdict(list), 
                                                                                     defaultdict(list), 
                                                                                     defaultdict(list), 
                                                                                     defaultdict(list), 
-                                                                                    defaultdict(list)
+                                                                                    defaultdict(list), 
+                                                                                    defaultdict(list), 
+                                                                                    defaultdict(list)   
                                                                                     )
+        
+        print('indexing videos...')
         if 'videos' in self.dataset:
             for video in self.dataset['videos']:
+                # video = copy.deepcopy(video)
+                video.update({'file_names':[],'length':0})
                 vids[video['id']] = video
-
+        # image to video ids mapping
+        imgToVid = {}
+        if 'images' in self.dataset:
+            for img in self.dataset['images']:
+                imgToVid[img['id']] = img['video_id']
+                
+        # update annotations with video_id
+        print('updating annotations with video_id...')
         if 'annotations' in self.dataset:
-            print('building index by Tracks...')
+            annotations_with_video_id = []
+            for ann in self.dataset['annotations']:
+                ann.update({'video_id': imgToVid[ann['image_id']]})
+                annotations_with_video_id.append(ann)
+            self.dataset['annotations'] = annotations_with_video_id
+            
+        print('indexing annotations...')
+        if 'annotations' in self.dataset:
             for ann in tqdm(self.dataset['annotations']):
+                
                 anns[ann['id']] = ann
+                if(ann["instance_id"] not in adjustedAnns):
+                    adjustedAnns[ann["instance_id"]] = {
+                                                        "id": ann["instance_id"],
+                                                        "video_id": ann["video_id"],
+                                                        "category_id": ann["category_id"],
+                                                        "areas":[],
+                                                        "bboxes":[],
+                                                        "segmentations":[],
+                                                        "iscrowd": 0
+                                                        }
+                
+                adjustedAnns[ann["instance_id"]]["areas"].append(ann["area"])
+                adjustedAnns[ann["instance_id"]]["bboxes"].append(ann["bbox"])
+                if "segmentation" in ann:
+                    adjustedAnns[ann["instance_id"]]["segmentations"].append(ann["segmentation"])
                 if 'id' in ann:
                     vidToTracks[ann['video_id']].append(ann['id'])
             vidToTracks = {k:list(set(v)) for k,v in vidToTracks.items()}
-
+                        
+        print('frames indexing...')
         if 'images' in self.dataset:
-            for img in tqdm(self.dataset['images']):
+            for img in self.dataset['images']:
                 vidToImgs[img['video_id']].append(img)
+                assert "file_names" in vids[img['video_id']].keys(), "file_names not in vids"
+                vids[img['video_id']]['file_names'].append(img['file_name'])
                 imgs[img['id']] = img
-
+                
+            #update video file_names and length
+            for vid in vids.values():
+                vid['file_names'] = list(set((vid['file_names'])))
+                vid['length'] = len(vid['file_names'])
+                
+                
+        print('indexing categories...')
         if 'categories' in self.dataset:
             for cat in self.dataset['categories']:
                 cats[cat['id']] = cat
-
+        
+        print('indexing categories to videos...')
         if 'annotations' in self.dataset and 'categories' in self.dataset:
-            print('building index by category ids...')
             for ann in tqdm(self.dataset['annotations']):
                 catToVids[ann['category_id']].append(ann['video_id'])
                 vidToCats[ann['video_id']].append(ann['category_id'])
@@ -110,13 +156,27 @@ class SkyDataVis(BaseDatasetTracking):
             catToVids = {k:list(set(v)) for k,v in catToVids.items()}
             vidToCats = {k:list(set(v)) for k,v in vidToCats.items()}
             catsToTracks = {k:list(set(v)) for k,v in catsToTracks.items()}
-
+            
+                    
+        print('indexing images to annotations...')   
+        if 'annotations' in tqdm(self.dataset):
+            for ann in self.dataset['annotations']:
+                imgToAnns[ann['image_id']].append(ann)
+                anns[ann['id']] = ann
+                if 'instance_id' in ann:
+                    instancesToImgs[ann['instance_id']].append(ann['image_id'])
+                    # if 'video_id' in ann and  ann['instance_id'] not in vidToInstances[ann['video_id']]:
+                    vidToInstances[ann['video_id']].append(ann['instance_id'])
+            instancesToImgs = {k:list(set(v)) for k,v in instancesToImgs.items()}
+            vidToInstances = {k:list(set(v)) for k,v in vidToInstances.items()}
+                        
+        
+        # adjustedAnns = list(adjustedAnns.values())
         if 'annotations' in self.dataset:
-            print('building index by areas...')
-            for ann in tqdm(self.dataset['annotations']):
+            for ann in tqdm(adjustedAnns.values()):
                 areas_or_boxes_or_segmentations = ann['areas'] if 'areas' in ann \
-                    else ann['segmentations'] if 'segmentations' in ann \
                     else ann['bboxes'] if 'bboxes' in ann \
+                    else ann['segmentations'] if 'segmentations' in ann \
                     else None
                     
                 non_none_boxes_filenames = []
@@ -125,7 +185,7 @@ class SkyDataVis(BaseDatasetTracking):
                     #get non none boxes indices
                     non_none_boxes = [i for i, e in enumerate(areas_or_boxes_or_segmentations) if e is not None]
                     #get filenames of non none boxes
-                    
+                        
                     try:
                         non_none_boxes_filenames = np.array(vids[ann['video_id']]["file_names"])[non_none_boxes]
                     except:
@@ -146,3 +206,6 @@ class SkyDataVis(BaseDatasetTracking):
         self.catsToTracks = catsToTracks
         self.vidToCats = vidToCats
         self.tracksToFrames = tracksToFrames
+        self.adjustedAnns = adjustedAnns
+        self.vidToInstances = vidToInstances
+        self.instancesToImgs = instancesToImgs

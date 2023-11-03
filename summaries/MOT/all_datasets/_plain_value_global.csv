@@ -1,0 +1,5 @@
+dataset_name,description,task,video_count,created_by,videos_count,min_resolution,max_resolution,min_height,max_height,min_width,max_width,shortest_video,longest_video,average_video_length,total_tracks,average_track_length,min_track_length,max_track_length,average_tracks_per_video,categories_count,super_categories_count,url,version,year,contributor,date_created
+MOT,Multiple Object Tracking,MOT,4,MOT,4,1032240,2073600,880,1080,1173,1920,429,3315,2232.75,2332,573.2933104631218,1,3315,334230.0,1,0,,,,,
+SkyData,,Vis,7,Ozerlabs,7,1420800,2073600,740,1080,1920,1920,300,2470,1155.0,3943,714.8767435962465,1,2470,563.2857142857143,9,2,https://www.skydatachallenge.com/,SkyDataV1,2022.0,,2021-07-15 20:39:41.721408
+MOT 2017,Multiple Object Tracking,MOT,21,MOT,21,307200,2073600,480,1080,640,1920,525,1050,759.4285714285714,2388,257.16206030150755,1,1050,29243.0,1,0,,,,,
+Visdrone MOT,VisDrone MOT Dataset,MOT,56,Visdrone,56,1016064,4161600,756,1530,1344,2720,58,1424,432.1607142857143,7089,158.82084920299056,1,1238,20881.410714285714,12,1,https://github.com/VisDrone/VisDrone-Dataset,1.0,2019.0,VisDrone,"Aug 25, 2019"

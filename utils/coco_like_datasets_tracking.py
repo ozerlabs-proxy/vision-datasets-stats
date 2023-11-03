@@ -21,7 +21,7 @@ def generate_stats_coco_like(D:BaseDatasetTracking) -> dict:
     stats = defaultdict(dict)
 
     #info 
-    stats["info"] = D.dataset["info"]
+    stats["info"] =  {} if "info" not in D.dataset else D.dataset["info"] 
     
     #images stats
     stats["_general_stats"] = get_general_videos_stats(list(D.videos.values()))
@@ -33,11 +33,21 @@ def generate_stats_coco_like(D:BaseDatasetTracking) -> dict:
                                                         D.catsToTracks, 
                                                         D.catToVids)
     
+    #check if instance of  a class has a given attribute(variable) in python 
     
     
-    # general areas stats
-    stats["_areas_stats"] = get_areas_stats(D.anns)   
+    useAnns = None
+    try:
+        useAnns = D.adjustedAnns 
+        if useAnns is None:
+            raise Exception("Anns should not be None")
+    except:
+        useAnns = D.anns
     
+    assert useAnns is not None, "Anns should not be None"
+  # general areas stats
+    stats["_areas_stats"] = get_areas_stats(useAnns)
+
     #tracks stats
     stats["tracks_stats"] = get_tracks_stats( D.tracksToFrames,
                                                 D.vidToTracks)
@@ -75,8 +85,8 @@ def get_categories_stats(cats,
         
     }
     _stats["category_names"] = [cat["name"] for cat in cats]
-    _stats["per_cat_tracks"] = [len(catsToTracks[cat["id"]]) for cat in cats]
-    _stats["cat_in_n_vids"] = [len(catToVids[cat["id"]]) for cat in cats]
+    _stats["per_cat_tracks"] = [0  if cat["id"] not in catsToTracks else len(catsToTracks[cat["id"]]) for cat in cats]
+    _stats["cat_in_n_vids"] = [0 if cat["id"] not in catToVids else len(catToVids[cat["id"]]) for cat in cats]
     
     return _stats
     
@@ -93,7 +103,9 @@ def categories_and_super_categories_stats(categories):
     
     _stats["categories_count"] = len(categories)
     _stats["categories"] = {cat["id"]: cat["name"] for cat in categories}
-    _stats["super_categories"] = { i:v for i,v in enumerate(list(set([cat["supercategory"] for cat in categories])))}
+    _stats["super_categories"] ={}
+    if "supercategory" in categories[0]:
+        _stats["super_categories"] = { i:v for i,v in enumerate(list(set([cat["supercategory"] for cat in categories])))} 
     _stats["super_categories_count"] = len(_stats["super_categories"])
     
     return _stats
@@ -122,9 +134,9 @@ def get_general_videos_stats(videos : list[dict] = []):
     
     
     tag = "length" if "length" in list(list(videos)[0].keys()) else "file_names"
-    _stats["shortest_video"] = min([tag if tag =="length" else len(video[tag]) for video in videos])
-    _stats["longest_video"] = max([tag if tag =="length" else len(video[tag]) for video in videos])
-    _stats["average_video_length"] = np.mean([tag if tag =="length" else len(video[tag])  for video in videos])
+    _stats["shortest_video"] = min([video[tag] if tag =="length" else len(video[tag]) for video in videos])
+    _stats["longest_video"] = max([video[tag] if tag =="length" else len(video[tag]) for video in videos])
+    _stats["average_video_length"] = np.mean([video[tag] if tag =="length" else len(video[tag])  for video in videos])
     
     return _stats
 
