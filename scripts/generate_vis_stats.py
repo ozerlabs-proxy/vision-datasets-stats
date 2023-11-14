@@ -1,9 +1,9 @@
-# ## [markdown]
+# %% [markdown]
 # # 1. VIS-stats
 # generate video instance segmentation (VIS) stats for a video datasets
 # 
 
-# ##
+# %%
 # expose parent directory to import modules
 import os
 import sys
@@ -16,7 +16,7 @@ os.chdir(ROOT_DIR)
 
 TASK = 'VIS'
 
-# ##
+# %%
 
 
 # import libraries
@@ -34,23 +34,23 @@ sns.set()
 from utils import stats_tools
 warnings.filterwarnings('ignore')
 
-# ##
+# %%
 #
 
 summaries_path = Path('./summaries')
 summaries_path= summaries_path / TASK
 summaries_path.mkdir(parents=True, exist_ok=True)
 
-# ##
+# %%
 # get dataset to file paths
 dataset_to_file_paths = stats_tools.get_dataset_to_file_paths(str(summaries_path))
 
 # len(dataset_to_file_paths), dataset_to_file_paths
 
-# ##
+# %%
 dataset_to_file_paths
 
-# ##
+# %%
 
 global_summary_plain_value_cols_df = pd.DataFrame()
 global_summary_videos_stats = pd.DataFrame()
@@ -103,7 +103,7 @@ for dataset_name, file_path in dataset_to_file_paths.items():
 
     
 
-# ##
+# %%
 # plot generals and save stats
 
 ## global_summary_plain_value_cols_df save to csv
@@ -121,6 +121,11 @@ stats_tools.summarize_global_areas_ranges_stats_plot_and_save(global_areas_range
 stats_tools.summarize_global_tracks_stats_plot_and_save(global_tracks_stats_df=global_tracks_stats,
                                                     save_path=summaries_path/'all_datasets',
                                                     file_name='_tracks_stats_global')
+
+# %%
+
+
+# %%
 
 
 
