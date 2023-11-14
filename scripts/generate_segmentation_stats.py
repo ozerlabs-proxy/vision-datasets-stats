@@ -1,23 +1,14 @@
-# ## [markdown]
-# # 1. Detection-stats
+# %% [markdown]
+# # 1. segmentation-stats
 # 
 # To generate stats, we will read the summary files for different datasets in `summary folder`. The summary folder contains folders named after the dataset name. Each dataset folder contains summary files extacted by respective scripts. The summary files are in json format. We will read the json files and generate stats.
 # 
 # We will generate per dataset stats and general stats combining all the datasets.
 # 
 # Among the stats, we will generate the following:
-# 
-# * [ ] 1. Number of images `all_ds`
-# * [ ] 2. Number of objects `all_ds`
-# * [ ] 3. Number of classes `all_ds`
-# * [ ] 4. Number of instances per class `per_ds` 
-# * [ ] 5. Average number of instances per image `all_ds` 
-# <!-- * [ ] 6. Bounding box area distribution `all_ds` -->
-# 
-# 
 # The results will be saved in summaries in respective dataset folders.
 
-# ##
+# %%
 # expose parent directory to import modules
 import os
 import sys
@@ -28,9 +19,9 @@ while os.path.basename(ROOT_DIR) != 'DatasetsStatistics':
 sys.path.insert(0,ROOT_DIR)
 os.chdir(ROOT_DIR)
 
-TASK = 'detection'
+TASK = 'segmentation'
 
-# ##
+# %%
 
 
 # import libraries
@@ -48,20 +39,19 @@ sns.set()
 from utils import stats_tools
 warnings.filterwarnings('ignore')
 
-# ##
+# %%
 #
 
 summaries_path = Path('./summaries')
 summaries_path= summaries_path / TASK
 summaries_path.mkdir(parents=True, exist_ok=True)
 
-# ##
+# %%
 # get dataset to file paths
 dataset_to_file_paths = stats_tools.get_dataset_to_file_paths(str(summaries_path))
 
-# len(dataset_to_file_paths), dataset_to_file_paths
 
-# ##
+# %%
 
 global_summary_plain_value_cols_df = pd.DataFrame()
 global_summary_images_stats = pd.DataFrame()
@@ -74,6 +64,13 @@ for dataset_name, file_path in dataset_to_file_paths.items():
     print("*"*20 + f"{dataset_name}" + "*"*20)
     # load data
     summary = stats_tools.load_summary(file_path=file_path)
+
+    if ("_masks_stats" not in summary.keys()) \
+          or (summary["_masks_stats"] is None) \
+            or not (summary["_masks_stats"]["_is_masks"]) \
+                or (int(summary["_masks_stats"]["masks_count"])==0):
+        continue
+
     dataset_to_summary = {dataset_name: summary}
 
     # plain-common-stats-stats-plots-save
@@ -122,33 +119,36 @@ for dataset_name, file_path in dataset_to_file_paths.items():
     [global_areas_ratios_general_stats[k].append(v) for k,v in _area_ratio_stats.items()]
     
 
-# ##
+# %%
 # plot generals and save stats
+if ("_masks_stats" not in summary.keys()) \
+        or (summary["_masks_stats"] is None) \
+        or not (summary["_masks_stats"]["_is_masks"]) \
+            or (int(summary["_masks_stats"]["masks_count"])==0):
+    ## global_summary_plain_value_cols_df save to csv
+    stats_tools.save_df_to_csv(df=global_summary_plain_value_cols_df,
+                                save_path=summaries_path/'all_datasets',
+                                file_name='_plain_value_global.csv')
 
-## global_summary_plain_value_cols_df save to csv
-stats_tools.save_df_to_csv(df=global_summary_plain_value_cols_df,
-                            save_path=summaries_path/'all_datasets',
-                            file_name='_plain_value_global.csv')
 
+    ## global_summary_images_stats save to csv
+    stats_tools.summarize_global_images_plot_and_save(global_summary_images_stats=global_summary_images_stats,
+                                                    save_path=summaries_path/'all_datasets',
+                                                    file_name='_images_stats_global')
 
-## global_summary_images_stats save to csv
-stats_tools.summarize_global_images_plot_and_save(global_summary_images_stats=global_summary_images_stats,
-                                                  save_path=summaries_path/'all_datasets',
-                                                  file_name='_images_stats_global')
+    ## global_summary_masks_stats save to csv
+    stats_tools.summarize_global_summary_masks_stats_plot_and_save(global_summary_masks_stats=global_summary_masks_stats,
+                                                    save_path=summaries_path/'all_datasets',
+                                                    file_name='_masks_stats_global')
 
-## global_summary_masks_stats save to csv
-stats_tools.summarize_global_summary_masks_stats_plot_and_save(global_summary_masks_stats=global_summary_masks_stats,
-                                                  save_path=summaries_path/'all_datasets',
-                                                  file_name='_masks_stats_global')
+    # ## global_areas_ranges_stats save to csv
+    stats_tools.summarize_global_areas_ranges_stats_plot_and_save(global_areas_ranges_stats_df=global_areas_ranges_stats,
+                                                    save_path=summaries_path/'all_datasets',
+                                                    file_name='_areas_ranges_stats_global')
 
-# ## global_areas_ranges_stats save to csv
-stats_tools.summarize_global_areas_ranges_stats_plot_and_save(global_areas_ranges_stats_df=global_areas_ranges_stats,
-                                                  save_path=summaries_path/'all_datasets',
-                                                  file_name='_areas_ranges_stats_global')
-
-# ## global_areas_ratios_general_stats save to csv
-stats_tools.summarize_global_areas_ratios_general_stats_plot_and_save(stats=global_areas_ratios_general_stats,
-                                                                    save_path=summaries_path/'all_datasets',
-                                                                    file_name='_areas_ratios_general_stats')
+    # ## global_areas_ratios_general_stats save to csv
+    stats_tools.summarize_global_areas_ratios_general_stats_plot_and_save(stats=global_areas_ratios_general_stats,
+                                                                        save_path=summaries_path/'all_datasets',
+                                                                        file_name='_areas_ratios_general_stats')
 
 
