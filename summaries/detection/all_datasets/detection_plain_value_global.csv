@@ -1,0 +1,12 @@
+dataset_name,annotations_count,created_by,description,images_count,task,dataset_size,categories_count
+DOTA,268627,DOTA,DOTAv2.0 dataset,1830,detection,1830,18
+VisDrone,353550,VisDrone,VisDrone dataset,6471,detection,6471,12
+KAIST Pedestrian Dataset,23309,KAIST,KAIST  dataset,17498,detection,95324,3
+KITTI,51865,KITTI,KITTI dataset,7481,detection,7481,9
+SkyData,2818759,SkyData,SkyData dataset,8085,detection,8085,9
+VHR10,3921,VHR10,VHR10 dataset,650,detection,650,10
+Vedai,3757,Vedai,Vedai dataset,1246,detection,1246,15
+COCO,860001,Microsoft,COCO dataset,118287,detection,118287,80
+COCO,604907,Microsoft,COCO dataset,82783,detection,82783,80
+KAIST_roboflow,16699,KAIST,KAIST  dataset,3296,detection,3296,4
+UAV123,112578,UAV123,UAV123 dataset,112578,tracking,112578,1

@@ -16,6 +16,13 @@ sys.path.insert(0,ROOT_DIR)
 os.chdir(ROOT_DIR)
 
 
+"""
+    SUMMARIES
+    
+    generate summaries for each task, then run generate statistics for each task
+    
+"""
+
 summaries_scripts_per_task = {
     "detection": "generate_detection_summaries.py",
     "segmentation": "generate_segmentation_summaries.py",
@@ -42,7 +49,9 @@ if GENERATE_SUMMARIES:
     
     
 """
-STATS
+    STATS
+    
+    generate stats for the tasks that have summaries
 """
 
 

@@ -150,9 +150,10 @@ def summarize_global_areas_ranges_stats_plot_and_save(global_areas_ranges_stats_
     global_areas_ranges_stats_df.plot.bar(x='dataset_name',
                                             figsize=(15,10),
                                             title='areas_ranges_stats',
-                                            xlabel="",
+                                            xlabel=""
                                             
                                             )
+    
     plt.xticks(rotation=90)
     plt.savefig(str(save_path/f'{file_name}.png'), dpi=300, bbox_inches='tight')
     plt.close()
@@ -179,6 +180,7 @@ def summarize_global_summary_masks_stats_plot_and_save(global_summary_masks_stat
                                     title='images_stats',
                                     xlabel="",
                                     )
+    # plt.yscale('log')
     plt.savefig(str(save_path/f'{file_name}.png'), dpi=300, bbox_inches='tight')
     plt.close()
 
@@ -203,6 +205,7 @@ def summarize_global_images_plot_and_save(global_summary_images_stats,
                                     title='images_stats',
                                     xlabel="",
                                     )
+    
     # annotate with resolutions and number of images
     for i, row in global_summary_images_stats.iterrows():
         plt.annotate(f"{row['images_count']}\n{row['min_resolution']}\n{row['max_resolution']}", 
@@ -211,7 +214,7 @@ def summarize_global_images_plot_and_save(global_summary_images_stats,
                         color='red',
                         size=8,
                         )
-
+    # plt.yscale('log')
     plt.savefig(str(save_path/f'{file_name}.png'), dpi=300, bbox_inches='tight')
     plt.close()
 
