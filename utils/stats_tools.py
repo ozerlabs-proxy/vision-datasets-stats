@@ -214,7 +214,7 @@ def summarize_global_images_plot_and_save(global_summary_images_stats,
                         color='red',
                         size=8,
                         )
-    # plt.yscale('log')
+    plt.yscale('log')
     plt.savefig(str(save_path/f'{file_name}.png'), dpi=300, bbox_inches='tight')
     plt.close()
 
