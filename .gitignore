@@ -1,0 +1,24 @@
+# ignore pycache
+__pycache__
+
+# 
+*.pyc
+
+
+# ignore dirs
+lab-server
+data
+data
+logs
+summaries
+backups
+
+# ignore files
+.idea
+*.idea
+*.json
+playground.ipynb
+
+#ignore check point files
+.ipynb_checkpoints
+
